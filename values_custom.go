@@ -1,0 +1,28 @@
+package appcfg
+
+import "time"
+
+// Value is like Get except it returns zero value and set *err to
+// RequiredError if unset.
+func (v *Duration) Value(err *error) (val time.Duration) { //nolint:gocritic // ptrToRefParam.
+	if v.value == nil {
+		*err = &RequiredError{v}
+		return val
+	}
+	return *v.value
+}
+
+// NewOneOfString returns OneOfString without value set.
+func NewOneOfString(oneOf []string) OneOfString {
+	return OneOfString{oneOf: oneOf}
+}
+
+// MustOneOfString returns OneOfString initialized with given value or panics.
+func MustOneOfString(s string, oneOf []string) OneOfString {
+	var v = OneOfString{oneOf: oneOf}
+	err := v.Set(s)
+	if err != nil {
+		panic(err)
+	}
+	return v
+}

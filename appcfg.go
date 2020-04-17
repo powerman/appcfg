@@ -22,17 +22,16 @@ import (
 // provider will be called only if previous providers won't provide a
 // value for a current field.
 //
-// It is recommended to apply "from flags" provider(s) using separate call
-// after all other providers will be applied - this way flag provider will
-// be able to show values set by other providers as flag defaults in usage
-// message.
+// It is recommended to add cfg fields to FlagSet after all other
+// providers will be applied - this way usage message on -h flag will be
+// able to show values set by other providers as flag defaults.
 //
 // Returns error if any provider will try to set invalid value.
 func ProvideStruct(cfg interface{}, providers ...Provider) error {
 	var lastErr error
 	forStruct(cfg, func(value Value, name string, tags Tags) {
 		for _, provider := range providers {
-			err, ok := provider.Provide(value, name, tags)
+			ok, err := provider.Provide(value, name, tags)
 			if err != nil {
 				lastErr = fmt.Errorf("cfg.%s %#q: %w", name, tags, err)
 				break
@@ -45,10 +44,15 @@ func ProvideStruct(cfg interface{}, providers ...Provider) error {
 	return lastErr
 }
 
+// RequiredError is returned from Value(&err) methods if value wasn't set.
 type RequiredError struct{ Value }
 
+// Error implements error interface.
 func (*RequiredError) Error() string { return "value required" }
 
+// WrapErr adds more details about err.Value (if err is a RequiredError)
+// by looking for related flag name and field name/tags in given fs and
+// cfgs, otherwise returns err as is.
 func WrapErr(err error, fs *flag.FlagSet, cfgs ...interface{}) error {
 	if reqErr := new(RequiredError); errors.As(err, &reqErr) {
 		var flagName string
@@ -64,6 +68,9 @@ func WrapErr(err error, fs *flag.FlagSet, cfgs ...interface{}) error {
 	return err
 }
 
+// WrapPErr adds more details about err.Value (if err is a RequiredError)
+// by looking for related flag name and field name/tags in given fs and
+// cfgs, otherwise returns err as is.
 func WrapPErr(err error, fs *pflag.FlagSet, cfgs ...interface{}) error {
 	if reqErr := new(RequiredError); errors.As(err, &reqErr) {
 		var flagName string

@@ -6,7 +6,7 @@ package appcfg
 
 // Value is like Get except it returns zero value and set *err to
 // RequiredError if unset.
-func (v *String) Value(err *error) (val string) {
+func (v *String) Value(err *error) (val string) { //nolint:gocritic // ptrToRefParam.
 	if v.value == nil {
 		*err = &RequiredError{v}
 		return val
@@ -16,7 +16,7 @@ func (v *String) Value(err *error) (val string) {
 
 // Value is like Get except it returns zero value and set *err to
 // RequiredError if unset.
-func (v *OneOfString) Value(err *error) (val string) {
+func (v *OneOfString) Value(err *error) (val string) { //nolint:gocritic // ptrToRefParam.
 	if v.value == nil {
 		*err = &RequiredError{v}
 		return val
@@ -26,7 +26,7 @@ func (v *OneOfString) Value(err *error) (val string) {
 
 // Value is like Get except it returns zero value and set *err to
 // RequiredError if unset.
-func (v *Endpoint) Value(err *error) (val string) {
+func (v *Endpoint) Value(err *error) (val string) { //nolint:gocritic // ptrToRefParam.
 	if v.value == nil {
 		*err = &RequiredError{v}
 		return val

@@ -34,6 +34,7 @@ type SliceValue interface {
 	GetSlice() []string
 }
 
+//nolint:gochecknoglobals // By design.
 var typValue = reflect.TypeOf(new(Value)).Elem()
 
 func implementsValue(typ reflect.Type) bool {

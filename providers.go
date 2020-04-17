@@ -19,7 +19,7 @@ type Tags interface {
 
 // Provider tries to find and set value based on it name and/or tags.
 type Provider interface {
-	Provide(value Value, name string, tags Tags) (err error, provided bool)
+	Provide(value Value, name string, tags Tags) (provided bool, err error)
 }
 
 // FromEnv implements Provider using value from environment variable with
@@ -36,10 +36,10 @@ func NewFromEnv(prefix string) *FromEnv {
 }
 
 // Provide implements Provider.
-func (f *FromEnv) Provide(value Value, _ string, tags Tags) (error, bool) {
+func (f *FromEnv) Provide(value Value, _ string, tags Tags) (bool, error) {
 	name := tags.Get("env")
 	if name == "" {
-		return nil, false
+		return false, nil
 	}
 	name = f.prefix + name
 	if s, ok := os.LookupEnv(name); ok {
@@ -47,7 +47,7 @@ func (f *FromEnv) Provide(value Value, _ string, tags Tags) (error, bool) {
 		if err != nil {
 			err = fmt.Errorf("$%s=%q: %w", name, s, err)
 		}
-		return err, true
+		return true, err
 	}
-	return nil, false
+	return false, nil
 }

@@ -1,10 +1,10 @@
-//go:generate genny -in=$GOFILE -out=gen.$GOFILE gen "NotEmptyString=String,OneOfString,Endpoint"
+//go:generate genny -in=$GOFILE -out=gen.$GOFILE gen "Port=ListenPort"
 
 package appcfg
 
 // Value is like Get except it returns zero value and set *err to
 // RequiredError if unset.
-func (v *NotEmptyString) Value(err *error) (val string) {
+func (v *Port) Value(err *error) (val int) { //nolint:gocritic // ptrToRefParam.
 	if v.value == nil {
 		*err = &RequiredError{v}
 		return val

@@ -10,6 +10,7 @@ import (
 	"time"
 )
 
+// Duration can be Set only to strings valid for time.ParseDuration().
 type Duration struct{ value *time.Duration }
 
 func (v *Duration) set(s string) error {
@@ -21,16 +22,7 @@ func (v *Duration) set(s string) error {
 	return nil
 }
 
-// Value is like Get except it returns zero value and set *err to
-// RequiredError if unset.
-func (v *Duration) Value(err *error) (val time.Duration) {
-	if v.value == nil {
-		*err = &RequiredError{v}
-		return val
-	}
-	return *v.value
-}
-
+// String can be set to any string, even empty.
 type String struct{ value *string }
 
 func (v *String) set(s string) error {
@@ -38,6 +30,8 @@ func (v *String) set(s string) error {
 	return nil
 }
 
+// NotEmptyString can be set to any string which contains at least one
+// non-whitespace symbol.
 type NotEmptyString struct{ value *string }
 
 func (v *NotEmptyString) set(s string) error {
@@ -48,6 +42,8 @@ func (v *NotEmptyString) set(s string) error {
 	return nil
 }
 
+// OneOfString can be set to any of predefined (using NewOneOfString or
+// MustOneOfString) values.
 type OneOfString struct {
 	value *string
 	oneOf []string
@@ -63,21 +59,8 @@ func (v *OneOfString) set(s string) error {
 	return fmt.Errorf("not one of %q", v.oneOf)
 }
 
-// NewOneOfString returns OneOfString without value set.
-func NewOneOfString(oneOf []string) OneOfString {
-	return OneOfString{oneOf: oneOf}
-}
-
-// MustOneOfString returns OneOfString initialized with given value or panics.
-func MustOneOfString(s string, oneOf []string) OneOfString {
-	var v = OneOfString{oneOf: oneOf}
-	err := v.Set(s)
-	if err != nil {
-		panic(err)
-	}
-	return v
-}
-
+// Endpoint can be set only to valid url with hostname. Also it'll trim
+// all / symbols at end, to make it easier to append paths to endpoint.
 type Endpoint struct{ value *string }
 
 func (v *Endpoint) set(s string) error {
@@ -92,6 +75,7 @@ func (v *Endpoint) set(s string) error {
 	return nil
 }
 
+// Port can be set to integer values between 1 and 65535.
 type Port struct{ value *int }
 
 func (v *Port) set(s string) error {
@@ -105,6 +89,7 @@ func (v *Port) set(s string) error {
 	return nil
 }
 
+// ListenPort can be set to integer values between 0 and 65535.
 type ListenPort struct{ value *int }
 
 func (v *ListenPort) set(s string) error {
