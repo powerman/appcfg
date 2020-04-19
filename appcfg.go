@@ -33,7 +33,7 @@ func ProvideStruct(cfg interface{}, providers ...Provider) error {
 		for _, provider := range providers {
 			ok, err := provider.Provide(value, name, tags)
 			if err != nil {
-				lastErr = fmt.Errorf("cfg.%s %#q: %w", name, tags, err)
+				lastErr = fmt.Errorf("%s: %w", field(name, tags), err)
 				break
 			}
 			if ok {
@@ -91,12 +91,7 @@ func wrapErr(reqErr *RequiredError, flagName string, cfgs ...interface{}) error 
 	for _, cfg := range cfgs {
 		forStruct(cfg, func(value Value, name string, tags Tags) {
 			if value == reqErr.Value {
-				s := fmt.Sprintf("%s %s", flagName, tags)
-				s = strings.TrimSpace(strings.Join(strings.Fields(s), " "))
-				if s != "" {
-					name = fmt.Sprintf("%s (%s)", name, s)
-				}
-				lastErr = fmt.Errorf("%s: %w", name, reqErr)
+				lastErr = fmt.Errorf("%s: %w", field(name, flagName, tags), reqErr)
 			}
 		})
 	}
@@ -124,4 +119,12 @@ func forStruct(cfg interface{}, handle func(Value, string, Tags)) {
 		value := val.Elem().FieldByName(f.Name).Addr().Interface().(Value)
 		handle(value, f.Name, f.Tag)
 	}
+}
+
+func field(name string, sources ...interface{}) string {
+	s := strings.TrimSpace(strings.Join(strings.Fields(fmt.Sprintln(sources...)), " "))
+	if s != "" {
+		return fmt.Sprintf("%s (%s)", name, s)
+	}
+	return name
 }
