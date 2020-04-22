@@ -59,11 +59,11 @@ func WrapErr(err error, fs *flag.FlagSet, cfgs ...interface{}) error {
 		if fs != nil {
 			fs.VisitAll(func(f *flag.Flag) {
 				if f.Value == reqErr.Value {
-					flagName = f.Name
+					flagName = "-" + f.Name
 				}
 			})
 		}
-		return wrapErr(reqErr, "-"+flagName, cfgs...)
+		return wrapErr(reqErr, flagName, cfgs...)
 	}
 	return err
 }
@@ -77,11 +77,11 @@ func WrapPErr(err error, fs *pflag.FlagSet, cfgs ...interface{}) error {
 		if fs != nil {
 			fs.VisitAll(func(f *pflag.Flag) {
 				if f.Value == reqErr.Value {
-					flagName = f.Name
+					flagName = "--" + f.Name
 				}
 			})
 		}
-		return wrapErr(reqErr, "--"+flagName, cfgs...)
+		return wrapErr(reqErr, flagName, cfgs...)
 	}
 	return err
 }
