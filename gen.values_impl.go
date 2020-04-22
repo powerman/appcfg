@@ -134,6 +134,38 @@ func (v *Endpoint) Type() string {
 	return "Endpoint"
 }
 
+var _ Value = &IntBetween{}
+
+// String implements flag.Value interface.
+func (v *IntBetween) String() string {
+	if v == nil || v.value == nil {
+		return ""
+	}
+	return fmt.Sprint(*v.value)
+}
+
+// Set implements flag.Value interface.
+func (v *IntBetween) Set(s string) error {
+	err := v.set(s)
+	if err != nil {
+		v.value = nil
+	}
+	return err
+}
+
+// Get implements flag.Getter interface.
+func (v *IntBetween) Get() interface{} {
+	if v.value == nil {
+		return nil
+	}
+	return *v.value
+}
+
+// Type implements pflag.Value interface.
+func (v *IntBetween) Type() string {
+	return "IntBetween"
+}
+
 var _ Value = &Port{}
 
 // String implements flag.Value interface.

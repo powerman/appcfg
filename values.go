@@ -10,7 +10,7 @@ import (
 	"time"
 )
 
-// Duration can be Set only to strings valid for time.ParseDuration().
+// Duration can be Set only to string valid for time.ParseDuration().
 type Duration struct{ value *time.Duration }
 
 func (v *Duration) set(s string) error {
@@ -75,7 +75,25 @@ func (v *Endpoint) set(s string) error {
 	return nil
 }
 
-// Port can be set to integer values between 1 and 65535.
+// IntBetween can be set to integer value between given (using
+// NewIntBetween or MustIntBetween) min/max values (inclusive).
+type IntBetween struct {
+	value    *int
+	min, max int
+}
+
+func (v *IntBetween) set(s string) error {
+	i, err := strconv.Atoi(s)
+	if err != nil {
+		return err
+	} else if !(v.min <= i && i <= v.max) {
+		return fmt.Errorf("not between %d and %d", v.min, v.max)
+	}
+	v.value = &i
+	return nil
+}
+
+// Port can be set to integer value between 1 and 65535.
 type Port struct{ value *int }
 
 func (v *Port) set(s string) error {
@@ -89,7 +107,7 @@ func (v *Port) set(s string) error {
 	return nil
 }
 
-// ListenPort can be set to integer values between 0 and 65535.
+// ListenPort can be set to integer value between 0 and 65535.
 type ListenPort struct{ value *int }
 
 func (v *ListenPort) set(s string) error {

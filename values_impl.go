@@ -1,4 +1,4 @@
-//go:generate genny -in=$GOFILE -out=gen.$GOFILE gen "Duration=String,NotEmptyString,OneOfString,Endpoint,Port,ListenPort"
+//go:generate genny -in=$GOFILE -out=gen.$GOFILE gen "Duration=String,NotEmptyString,OneOfString,Endpoint,IntBetween,Port,ListenPort"
 
 package appcfg
 

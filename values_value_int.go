@@ -1,4 +1,4 @@
-//go:generate genny -in=$GOFILE -out=gen.$GOFILE gen "Port=ListenPort"
+//go:generate genny -in=$GOFILE -out=gen.$GOFILE gen "Port=IntBetween,ListenPort"
 
 package appcfg
 
