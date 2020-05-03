@@ -12,6 +12,16 @@ func (v *Duration) Value(err *error) (val time.Duration) { //nolint:gocritic // 
 	return *v.value
 }
 
+// Value is like Get except it returns zero value and set *err to
+// RequiredError if unset.
+func (v *Bool) Value(err *error) (val bool) { //nolint:gocritic // ptrToRefParam.
+	if v.value == nil {
+		*err = &RequiredError{v}
+		return val
+	}
+	return *v.value
+}
+
 // NewOneOfString returns OneOfString without value set.
 func NewOneOfString(oneOf []string) OneOfString {
 	return OneOfString{oneOf: oneOf}

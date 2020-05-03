@@ -6,6 +6,38 @@ package appcfg
 
 import "fmt"
 
+var _ Value = &Bool{}
+
+// String implements flag.Value interface.
+func (v *Bool) String() string {
+	if v == nil || v.value == nil {
+		return ""
+	}
+	return fmt.Sprint(*v.value)
+}
+
+// Set implements flag.Value interface.
+func (v *Bool) Set(s string) error {
+	err := v.set(s)
+	if err != nil {
+		v.value = nil
+	}
+	return err
+}
+
+// Get implements flag.Getter interface.
+func (v *Bool) Get() interface{} {
+	if v.value == nil {
+		return nil
+	}
+	return *v.value
+}
+
+// Type implements pflag.Value interface.
+func (v *Bool) Type() string {
+	return "Bool"
+}
+
 var _ Value = &String{}
 
 // String implements flag.Value interface.

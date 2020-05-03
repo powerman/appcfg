@@ -22,6 +22,18 @@ func (v *Duration) set(s string) error {
 	return nil
 }
 
+// Bool can be set to 1, t, T, TRUE, true, True, 0, f, F, FALSE, false, False.
+type Bool struct{ value *bool }
+
+func (v *Bool) set(s string) error {
+	b, err := strconv.ParseBool(s)
+	if err != nil {
+		return err
+	}
+	v.value = &b
+	return nil
+}
+
 // String can be set to any string, even empty.
 type String struct{ value *string }
 

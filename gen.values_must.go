@@ -4,6 +4,16 @@
 
 package appcfg
 
+// MustBool returns Bool initialized with given value or panics.
+func MustBool(s string) Bool {
+	var v Bool
+	err := v.Set(s)
+	if err != nil {
+		panic(err)
+	}
+	return v
+}
+
 // MustString returns String initialized with given value or panics.
 func MustString(s string) String {
 	var v String
