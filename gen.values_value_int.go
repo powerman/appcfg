@@ -6,6 +6,16 @@ package appcfg
 
 // Value is like Get except it returns zero value and set *err to
 // RequiredError if unset.
+func (v *Int) Value(err *error) (val int) { //nolint:gocritic // ptrToRefParam.
+	if v.value == nil {
+		*err = &RequiredError{v}
+		return val
+	}
+	return *v.value
+}
+
+// Value is like Get except it returns zero value and set *err to
+// RequiredError if unset.
 func (v *IntBetween) Value(err *error) (val int) { //nolint:gocritic // ptrToRefParam.
 	if v.value == nil {
 		*err = &RequiredError{v}

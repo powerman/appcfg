@@ -37,6 +37,46 @@ func MustOneOfString(s string, oneOf []string) OneOfString {
 	return v
 }
 
+// Value is like Get except it returns zero value and set *err to
+// RequiredError if unset.
+func (v *Int64) Value(err *error) (val int64) { //nolint:gocritic // ptrToRefParam.
+	if v.value == nil {
+		*err = &RequiredError{v}
+		return val
+	}
+	return *v.value
+}
+
+// Value is like Get except it returns zero value and set *err to
+// RequiredError if unset.
+func (v *Uint) Value(err *error) (val uint) { //nolint:gocritic // ptrToRefParam.
+	if v.value == nil {
+		*err = &RequiredError{v}
+		return val
+	}
+	return *v.value
+}
+
+// Value is like Get except it returns zero value and set *err to
+// RequiredError if unset.
+func (v *Uint64) Value(err *error) (val uint64) { //nolint:gocritic // ptrToRefParam.
+	if v.value == nil {
+		*err = &RequiredError{v}
+		return val
+	}
+	return *v.value
+}
+
+// Value is like Get except it returns zero value and set *err to
+// RequiredError if unset.
+func (v *Float64) Value(err *error) (val float64) { //nolint:gocritic // ptrToRefParam.
+	if v.value == nil {
+		*err = &RequiredError{v}
+		return val
+	}
+	return *v.value
+}
+
 // NewIntBetween returns IntBetween without value set.
 func NewIntBetween(min, max int) IntBetween {
 	return IntBetween{min: min, max: max}

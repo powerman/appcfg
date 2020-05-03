@@ -87,6 +87,78 @@ func (v *Endpoint) set(s string) error {
 	return nil
 }
 
+// Int can be set to integer value.
+// It's allowed to use 0b, 0o and 0x prefixes, and also underscores.
+type Int struct{ value *int }
+
+func (v *Int) set(s string) error {
+	i64, err := strconv.ParseInt(s, 0, strconv.IntSize)
+	if err != nil {
+		return err
+	}
+	i := int(i64)
+	if int64(i) != i64 {
+		return errors.New("value overflows int: " + s)
+	}
+	v.value = &i
+	return nil
+}
+
+// Int64 can be set to 64-bit integer value.
+// It's allowed to use 0b, 0o and 0x prefixes, and also underscores.
+type Int64 struct{ value *int64 }
+
+func (v *Int64) set(s string) error {
+	i, err := strconv.ParseInt(s, 0, 64)
+	if err != nil {
+		return err
+	}
+	v.value = &i
+	return nil
+}
+
+// Uint can be set to unsigned integer value.
+// It's allowed to use 0b, 0o and 0x prefixes, and also underscores.
+type Uint struct{ value *uint }
+
+func (v *Uint) set(s string) error {
+	i64, err := strconv.ParseUint(s, 0, strconv.IntSize)
+	if err != nil {
+		return err
+	}
+	i := uint(i64)
+	if uint64(i) != i64 {
+		return errors.New("value overflows unsigned int: " + s)
+	}
+	v.value = &i
+	return nil
+}
+
+// Uint64 can be set to unsigned 64-bit integer value.
+// It's allowed to use 0b, 0o and 0x prefixes, and also underscores.
+type Uint64 struct{ value *uint64 }
+
+func (v *Uint64) set(s string) error {
+	i, err := strconv.ParseUint(s, 0, 64)
+	if err != nil {
+		return err
+	}
+	v.value = &i
+	return nil
+}
+
+// Float64 can be set to 64-bit floating-point number.
+type Float64 struct{ value *float64 }
+
+func (v *Float64) set(s string) error {
+	i, err := strconv.ParseFloat(s, 64)
+	if err != nil {
+		return err
+	}
+	v.value = &i
+	return nil
+}
+
 // IntBetween can be set to integer value between given (using
 // NewIntBetween or MustIntBetween) min/max values (inclusive).
 type IntBetween struct {

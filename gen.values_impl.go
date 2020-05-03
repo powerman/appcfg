@@ -166,6 +166,166 @@ func (v *Endpoint) Type() string {
 	return "Endpoint"
 }
 
+var _ Value = &Int{}
+
+// String implements flag.Value interface.
+func (v *Int) String() string {
+	if v == nil || v.value == nil {
+		return ""
+	}
+	return fmt.Sprint(*v.value)
+}
+
+// Set implements flag.Value interface.
+func (v *Int) Set(s string) error {
+	err := v.set(s)
+	if err != nil {
+		v.value = nil
+	}
+	return err
+}
+
+// Get implements flag.Getter interface.
+func (v *Int) Get() interface{} {
+	if v.value == nil {
+		return nil
+	}
+	return *v.value
+}
+
+// Type implements pflag.Value interface.
+func (v *Int) Type() string {
+	return "Int"
+}
+
+var _ Value = &Int64{}
+
+// String implements flag.Value interface.
+func (v *Int64) String() string {
+	if v == nil || v.value == nil {
+		return ""
+	}
+	return fmt.Sprint(*v.value)
+}
+
+// Set implements flag.Value interface.
+func (v *Int64) Set(s string) error {
+	err := v.set(s)
+	if err != nil {
+		v.value = nil
+	}
+	return err
+}
+
+// Get implements flag.Getter interface.
+func (v *Int64) Get() interface{} {
+	if v.value == nil {
+		return nil
+	}
+	return *v.value
+}
+
+// Type implements pflag.Value interface.
+func (v *Int64) Type() string {
+	return "Int64"
+}
+
+var _ Value = &Uint{}
+
+// String implements flag.Value interface.
+func (v *Uint) String() string {
+	if v == nil || v.value == nil {
+		return ""
+	}
+	return fmt.Sprint(*v.value)
+}
+
+// Set implements flag.Value interface.
+func (v *Uint) Set(s string) error {
+	err := v.set(s)
+	if err != nil {
+		v.value = nil
+	}
+	return err
+}
+
+// Get implements flag.Getter interface.
+func (v *Uint) Get() interface{} {
+	if v.value == nil {
+		return nil
+	}
+	return *v.value
+}
+
+// Type implements pflag.Value interface.
+func (v *Uint) Type() string {
+	return "Uint"
+}
+
+var _ Value = &Uint64{}
+
+// String implements flag.Value interface.
+func (v *Uint64) String() string {
+	if v == nil || v.value == nil {
+		return ""
+	}
+	return fmt.Sprint(*v.value)
+}
+
+// Set implements flag.Value interface.
+func (v *Uint64) Set(s string) error {
+	err := v.set(s)
+	if err != nil {
+		v.value = nil
+	}
+	return err
+}
+
+// Get implements flag.Getter interface.
+func (v *Uint64) Get() interface{} {
+	if v.value == nil {
+		return nil
+	}
+	return *v.value
+}
+
+// Type implements pflag.Value interface.
+func (v *Uint64) Type() string {
+	return "Uint64"
+}
+
+var _ Value = &Float64{}
+
+// String implements flag.Value interface.
+func (v *Float64) String() string {
+	if v == nil || v.value == nil {
+		return ""
+	}
+	return fmt.Sprint(*v.value)
+}
+
+// Set implements flag.Value interface.
+func (v *Float64) Set(s string) error {
+	err := v.set(s)
+	if err != nil {
+		v.value = nil
+	}
+	return err
+}
+
+// Get implements flag.Getter interface.
+func (v *Float64) Get() interface{} {
+	if v.value == nil {
+		return nil
+	}
+	return *v.value
+}
+
+// Type implements pflag.Value interface.
+func (v *Float64) Type() string {
+	return "Float64"
+}
+
 var _ Value = &IntBetween{}
 
 // String implements flag.Value interface.

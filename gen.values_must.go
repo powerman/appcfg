@@ -44,6 +44,56 @@ func MustEndpoint(s string) Endpoint {
 	return v
 }
 
+// MustInt returns Int initialized with given value or panics.
+func MustInt(s string) Int {
+	var v Int
+	err := v.Set(s)
+	if err != nil {
+		panic(err)
+	}
+	return v
+}
+
+// MustInt64 returns Int64 initialized with given value or panics.
+func MustInt64(s string) Int64 {
+	var v Int64
+	err := v.Set(s)
+	if err != nil {
+		panic(err)
+	}
+	return v
+}
+
+// MustUint returns Uint initialized with given value or panics.
+func MustUint(s string) Uint {
+	var v Uint
+	err := v.Set(s)
+	if err != nil {
+		panic(err)
+	}
+	return v
+}
+
+// MustUint64 returns Uint64 initialized with given value or panics.
+func MustUint64(s string) Uint64 {
+	var v Uint64
+	err := v.Set(s)
+	if err != nil {
+		panic(err)
+	}
+	return v
+}
+
+// MustFloat64 returns Float64 initialized with given value or panics.
+func MustFloat64(s string) Float64 {
+	var v Float64
+	err := v.Set(s)
+	if err != nil {
+		panic(err)
+	}
+	return v
+}
+
 // MustPort returns Port initialized with given value or panics.
 func MustPort(s string) Port {
 	var v Port
