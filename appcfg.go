@@ -1,6 +1,3 @@
-// Package appcfg provides helpers to get valid application configuration
-// values from different sources (flags, env, config files, services like
-// consul, etc.).
 package appcfg
 
 import (
