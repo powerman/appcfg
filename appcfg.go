@@ -1,6 +1,3 @@
-// Package appcfg provides helpers to get valid application configuration
-// values from different sources (flags, env, config files, services like
-// consul, etc.).
 package appcfg
 
 import (
@@ -14,12 +11,12 @@ import (
 )
 
 // ProvideStruct updates cfg using values from given providers. Given cfg
-// must be a ref to struct with fields of Value type having struct tag
-// with tags for given providers. Current values in cfg, if any, will be
-// used as defaults.
+// must be a ref to struct with all exported fields having Value type and
+// struct tag with tags for given providers. Current values in cfg, if
+// any, will be used as defaults.
 //
-// Providers will be called for each cfg field, in order, with next
-// provider will be called only if previous providers won't provide a
+// Providers will be called for each exported field in cfg, in order, with
+// next provider will be called only if previous providers won't provide a
 // value for a current field.
 //
 // It is recommended to add cfg fields to FlagSet after all other
@@ -111,6 +108,9 @@ func forStruct(cfg interface{}, handle func(Value, string, Tags)) {
 
 	for i := 0; i < typ.NumField(); i++ {
 		f := typ.Field(i)
+		if f.PkgPath != "" {
+			continue
+		}
 		if !implementsValue(f.Type) {
 			panic(fmt.Sprintf("cfg.%s: must implements Value", f.Name))
 		}
@@ -127,4 +127,22 @@ func field(name string, sources ...interface{}) string {
 		return fmt.Sprintf("%s (%s)", name, s)
 	}
 	return name
+}
+
+// AddFlag defines a flag with the specified name and usage string.
+// Calling it again with same fs, value and name will have no effect.
+func AddFlag(fs *flag.FlagSet, value flag.Value, name string, usage string) {
+	if f := fs.Lookup(name); f != nil && f.Value == value {
+		return
+	}
+	fs.Var(value, name, usage)
+}
+
+// AddPFlag defines a flag with the specified name and usage string.
+// Calling it again with same fs, value and name will have no effect.
+func AddPFlag(fs *pflag.FlagSet, value pflag.Value, name string, usage string) {
+	if f := fs.Lookup(name); f != nil && f.Value == value {
+		return
+	}
+	fs.Var(value, name, usage)
 }
