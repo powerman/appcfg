@@ -5,15 +5,16 @@ jobs:
         docker:
             - image: cimg/go:1.14
               environment:
-                GOLANGCI_LINT_VER:  1.24.0
+                GOFLAGS: "-mod=readonly"
+                GOLANGCI_LINT_VER: "1.24.0"
         steps:
             - checkout
             - run: env | grep _VER | sort > /tmp/tools.ver
             - restore_cache:
                 keys:
-                    - v3-{{ checksum "/tmp/tools.ver" }}-{{ checksum "go.mod" }}-{{ .Branch }}
-                    - v3-{{ checksum "/tmp/tools.ver" }}-{{ checksum "go.mod" }}-
-                    - v3-{{ checksum "/tmp/tools.ver" }}-
+                    - v4-{{ checksum "/tmp/tools.ver" }}-{{ checksum "go.mod" }}-{{ .Branch }}
+                    - v4-{{ checksum "/tmp/tools.ver" }}-{{ checksum "go.mod" }}-
+                    - v4-{{ checksum "/tmp/tools.ver" }}-
             - run:
                 name: Install tools
                 command: |
@@ -23,13 +24,14 @@ jobs:
                     which goveralls >/dev/null ||
                         go get -v github.com/mattn/goveralls
             - run: golangci-lint run
-            - run: go test -mod=readonly -v -race -tags=integration ./...
+            - run: go test -v -race -tags=integration ./...
             - run: goveralls -service=circle-ci -flags -tags=integration
             - save_cache:
                 when: always
-                key: v3-{{ checksum "/tmp/tools.ver" }}-{{ checksum "go.mod" }}-{{ .Branch }}
+                key: v4-{{ checksum "/tmp/tools.ver" }}-{{ checksum "go.mod" }}-{{ .Branch }}
                 paths:
                     - ~/go/bin/
                     - ~/go/pkg/
                     - ~/go/src/
                     - ~/.cache/go-build/
+                    - ~/.cache/golangci-lint/
