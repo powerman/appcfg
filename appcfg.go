@@ -131,3 +131,21 @@ func field(name string, sources ...interface{}) string {
 	}
 	return name
 }
+
+// AddFlag defines a flag with the specified name and usage string.
+// Calling it again with same fs, value and name will have no effect.
+func AddFlag(fs *flag.FlagSet, value flag.Value, name string, usage string) {
+	if f := fs.Lookup(name); f != nil && f.Value == value {
+		return
+	}
+	fs.Var(value, name, usage)
+}
+
+// AddPFlag defines a flag with the specified name and usage string.
+// Calling it again with same fs, value and name will have no effect.
+func AddPFlag(fs *pflag.FlagSet, value pflag.Value, name string, usage string) {
+	if f := fs.Lookup(name); f != nil && f.Value == value {
+		return
+	}
+	fs.Var(value, name, usage)
+}
