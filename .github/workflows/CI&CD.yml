@@ -1,0 +1,53 @@
+name: CI/CD
+
+on:
+  push:
+    branches: master
+    tags: v*
+  pull_request:
+    branches: master
+
+env:
+  GO_VERSION: '^1.15.6'
+  GOFLAGS: '-mod=readonly'
+
+jobs:
+
+  test:
+    runs-on: 'ubuntu-latest'
+    timeout-minutes: 30
+    steps:
+      - uses: actions/setup-go@v2
+        with:
+          go-version: ${{ env.GO_VERSION }}
+
+      - uses: actions/checkout@v2
+
+      - uses: actions/cache@v2
+        with:
+          path: |
+            ~/go/bin
+            ~/go/pkg
+            ~/go/src
+            ~/.cache/go-build
+            ~/.cache/golangci-lint
+            ~/.cache/gobin
+            .gobincache
+          key: v1-test-${{ runner.os }}-${{ hashFiles('go.mod') }}
+          restore-keys: |
+            v1-test-${{ runner.os }}-
+
+      - name: Install tools
+        run: |
+          GO111MODULE=off go get -u github.com/myitcv/gobin
+
+      - run: gobin -m -run github.com/golangci/golangci-lint/cmd/golangci-lint run
+
+      - run: go test -v -race ./...
+
+      - name: Report code coverage
+        env:
+          COVERALLS_TOKEN: ${{ secrets.COVERALLS_TOKEN }}
+        if: env.COVERALLS_TOKEN
+        run: |
+          gobin -m -run github.com/mattn/goveralls -service=GitHub
