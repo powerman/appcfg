@@ -1,6 +1,9 @@
 package appcfg
 
-import "time"
+import (
+	"net"
+	"time"
+)
 
 // Value is like Get except it returns zero value and set *err to
 // RequiredError if unset.
@@ -90,4 +93,14 @@ func MustIntBetween(s string, min, max int) IntBetween {
 		panic(err)
 	}
 	return v
+}
+
+// Value is like Get except it returns zero value and set *err to
+// RequiredError if unset.
+func (v *IPNet) Value(err *error) (val *net.IPNet) { //nolint:gocritic // ptrToRefParam.
+	if v.value == nil {
+		*err = &RequiredError{v}
+		return val
+	}
+	return *v.value
 }

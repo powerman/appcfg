@@ -124,3 +124,14 @@ func MustListenPort(s string) ListenPort {
 	}
 	return v
 }
+
+
+// MustIPNet returns IPNet initialized with given value or panics.
+func MustIPNet(s string) IPNet {
+	var v IPNet
+	err := v.Set(s)
+	if err != nil {
+		panic(err)
+	}
+	return v
+}

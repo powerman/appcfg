@@ -104,3 +104,35 @@ func TestUint(tt *testing.T) {
 	t.PanicMatch(func() { v = appcfg.MustUint("") }, "invalid")
 	t.PanicMatch(func() { v = appcfg.MustUint("-1") }, "invalid")
 }
+
+func TestIPNet(tt *testing.T) {
+	t := check.T(tt)
+	t.Parallel()
+
+	var v appcfg.IPNet
+	t.Equal(v.Type(), "IPNet")
+
+	t.Equal(v.String(), "")
+	t.Nil(v.Get())
+	var err error
+	t.Zero(v.Value(&err))
+	t.Match(err, "required")
+
+	t.Nil(v.Set("0.0.0.0/0"))
+
+	t.Equal(v.String(), "0.0.0.0/0")
+	t.NotNil(v.Get())
+	err = nil
+	t.NotZero(v.Value(&err))
+	t.Nil(err)
+
+	v = appcfg.MustIPNet("192.168.2.1/24")
+
+	t.Equal(v.String(), "192.168.2.0/24")
+	t.NotNil(v.Get())
+	err = nil
+	t.Equal(v.Value(&err).String(), "192.168.2.0/24")
+	t.Nil(err)
+
+	t.PanicMatch(func() { v = appcfg.MustIPNet("") }, "invalid")
+}

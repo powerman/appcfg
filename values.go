@@ -4,6 +4,7 @@ import (
 	"errors"
 	"fmt"
 	"math"
+	"net"
 	"net/url"
 	"strconv"
 	"strings"
@@ -210,5 +211,17 @@ func (v *ListenPort) set(s string) error {
 		return fmt.Errorf("%w 0 and %d", errNotBetween, math.MaxUint16)
 	}
 	v.value = &i
+	return nil
+}
+
+// IPNet can be set to CIDR address.
+type IPNet struct{ value **net.IPNet }
+
+func (v *IPNet) set(s string) error {
+	_, ipNet, err := net.ParseCIDR(s)
+	if err != nil {
+		return err
+	}
+	v.value = &ipNet
 	return nil
 }
