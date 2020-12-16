@@ -1,37 +1,38 @@
 version: 2.1
 
 jobs:
-    build:
-        docker:
-            - image: cimg/go:1.14
-              environment:
-                GOFLAGS: "-mod=readonly"
-                GOLANGCI_LINT_VER: "1.24.0"
-        steps:
-            - checkout
-            - run: env | grep _VER | sort > /tmp/tools.ver
-            - restore_cache:
-                keys:
-                    - v4-{{ checksum "/tmp/tools.ver" }}-{{ checksum "go.mod" }}-{{ .Branch }}
-                    - v4-{{ checksum "/tmp/tools.ver" }}-{{ checksum "go.mod" }}-
-                    - v4-{{ checksum "/tmp/tools.ver" }}-
-            - run:
-                name: Install tools
-                command: |
-                    cd /
-                    golangci-lint --version | tee /dev/stderr | grep -wq $GOLANGCI_LINT_VER ||
-                        curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(go env GOPATH)/bin v$GOLANGCI_LINT_VER
-                    which goveralls >/dev/null ||
-                        go get -v github.com/mattn/goveralls
-            - run: golangci-lint run
-            - run: go test -v -race -tags=integration ./...
-            - run: goveralls -service=circle-ci -flags -tags=integration
-            - save_cache:
-                when: always
-                key: v4-{{ checksum "/tmp/tools.ver" }}-{{ checksum "go.mod" }}-{{ .Branch }}
-                paths:
-                    - ~/go/bin/
-                    - ~/go/pkg/
-                    - ~/go/src/
-                    - ~/.cache/go-build/
-                    - ~/.cache/golangci-lint/
+  test:
+    docker:
+      - image: "cimg/go:1.15"
+        environment:
+          GOFLAGS: "-mod=readonly"
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - v5-{{ checksum "go.mod" }}-{{ .Branch }}
+            - v5-{{ checksum "go.mod" }}-
+            - v5-
+      - run:
+          name: Install tools
+          command: |
+            GO111MODULE=off go get -u github.com/myitcv/gobin
+      - run: gobin -m -run github.com/golangci/golangci-lint/cmd/golangci-lint run
+      - run: go test -v -race ./...
+      - run: gobin -m -run github.com/mattn/goveralls -service=CircleCI
+      - save_cache:
+          when: always
+          key: v5-{{ checksum "go.mod" }}-{{ .Branch }}
+          paths:
+            - ~/go/bin/
+            - ~/go/pkg/
+            - ~/go/src/
+            - ~/.cache/go-build/
+            - ~/.cache/golangci-lint/
+            - ~/.cache/gobin/
+            - .gobincache/
+
+workflows:
+  default:
+    jobs:
+      - test

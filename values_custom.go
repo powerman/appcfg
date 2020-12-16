@@ -29,7 +29,7 @@ func NewOneOfString(oneOf []string) OneOfString {
 
 // MustOneOfString returns OneOfString initialized with given value or panics.
 func MustOneOfString(s string, oneOf []string) OneOfString {
-	var v = NewOneOfString(oneOf)
+	v := NewOneOfString(oneOf)
 	err := v.Set(s)
 	if err != nil {
 		panic(err)
@@ -84,7 +84,7 @@ func NewIntBetween(min, max int) IntBetween {
 
 // MustIntBetween returns IntBetween initialized with given value or panics.
 func MustIntBetween(s string, min, max int) IntBetween {
-	var v = NewIntBetween(min, max)
+	v := NewIntBetween(min, max)
 	err := v.Set(s)
 	if err != nil {
 		panic(err)

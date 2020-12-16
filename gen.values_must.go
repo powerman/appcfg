@@ -2,6 +2,7 @@
 // Any changes will be lost if this file is regenerated.
 // see https://github.com/cheekybits/genny
 
+
 package appcfg
 
 // MustBool returns Bool initialized with given value or panics.
@@ -14,6 +15,7 @@ func MustBool(s string) Bool {
 	return v
 }
 
+
 // MustString returns String initialized with given value or panics.
 func MustString(s string) String {
 	var v String
@@ -23,6 +25,7 @@ func MustString(s string) String {
 	}
 	return v
 }
+
 
 // MustNotEmptyString returns NotEmptyString initialized with given value or panics.
 func MustNotEmptyString(s string) NotEmptyString {
@@ -34,6 +37,7 @@ func MustNotEmptyString(s string) NotEmptyString {
 	return v
 }
 
+
 // MustEndpoint returns Endpoint initialized with given value or panics.
 func MustEndpoint(s string) Endpoint {
 	var v Endpoint
@@ -43,6 +47,7 @@ func MustEndpoint(s string) Endpoint {
 	}
 	return v
 }
+
 
 // MustInt returns Int initialized with given value or panics.
 func MustInt(s string) Int {
@@ -54,6 +59,7 @@ func MustInt(s string) Int {
 	return v
 }
 
+
 // MustInt64 returns Int64 initialized with given value or panics.
 func MustInt64(s string) Int64 {
 	var v Int64
@@ -63,6 +69,7 @@ func MustInt64(s string) Int64 {
 	}
 	return v
 }
+
 
 // MustUint returns Uint initialized with given value or panics.
 func MustUint(s string) Uint {
@@ -74,6 +81,7 @@ func MustUint(s string) Uint {
 	return v
 }
 
+
 // MustUint64 returns Uint64 initialized with given value or panics.
 func MustUint64(s string) Uint64 {
 	var v Uint64
@@ -83,6 +91,7 @@ func MustUint64(s string) Uint64 {
 	}
 	return v
 }
+
 
 // MustFloat64 returns Float64 initialized with given value or panics.
 func MustFloat64(s string) Float64 {
@@ -94,6 +103,7 @@ func MustFloat64(s string) Float64 {
 	return v
 }
 
+
 // MustPort returns Port initialized with given value or panics.
 func MustPort(s string) Port {
 	var v Port
@@ -103,6 +113,7 @@ func MustPort(s string) Port {
 	}
 	return v
 }
+
 
 // MustListenPort returns ListenPort initialized with given value or panics.
 func MustListenPort(s string) ListenPort {

@@ -1,15 +1,18 @@
-package appcfg
+package appcfg_test
 
 import (
 	"testing"
 
 	"github.com/powerman/check"
+
+	"github.com/powerman/appcfg"
 )
 
 func TestBool(tt *testing.T) {
 	t := check.T(tt)
+	t.Parallel()
 
-	var v Bool
+	var v appcfg.Bool
 	t.Equal(v.Type(), "Bool")
 
 	t.Equal(v.String(), "")
@@ -26,7 +29,7 @@ func TestBool(tt *testing.T) {
 	t.False(v.Value(&err))
 	t.Nil(err)
 
-	v = MustBool("1")
+	v = appcfg.MustBool("1")
 
 	t.Equal(v.String(), "true")
 	t.NotNil(v.Get())
@@ -34,13 +37,14 @@ func TestBool(tt *testing.T) {
 	t.True(v.Value(&err))
 	t.Nil(err)
 
-	t.PanicMatch(func() { v = MustBool("") }, "invalid")
+	t.PanicMatch(func() { v = appcfg.MustBool("") }, "invalid")
 }
 
 func TestInt(tt *testing.T) {
 	t := check.T(tt)
+	t.Parallel()
 
-	var v Int
+	var v appcfg.Int
 	t.Equal(v.Type(), "Int")
 
 	t.Equal(v.String(), "")
@@ -57,7 +61,7 @@ func TestInt(tt *testing.T) {
 	t.Zero(v.Value(&err))
 	t.Nil(err)
 
-	v = MustInt("-0b111")
+	v = appcfg.MustInt("-0b111")
 
 	t.Equal(v.String(), "-7")
 	t.NotNil(v.Get())
@@ -65,13 +69,14 @@ func TestInt(tt *testing.T) {
 	t.Equal(v.Value(&err), -7)
 	t.Nil(err)
 
-	t.PanicMatch(func() { v = MustInt("") }, "invalid")
+	t.PanicMatch(func() { v = appcfg.MustInt("") }, "invalid")
 }
 
 func TestUint(tt *testing.T) {
 	t := check.T(tt)
+	t.Parallel()
 
-	var v Uint
+	var v appcfg.Uint
 	t.Equal(v.Type(), "Uint")
 
 	t.Equal(v.String(), "")
@@ -88,7 +93,7 @@ func TestUint(tt *testing.T) {
 	t.Zero(v.Value(&err))
 	t.Nil(err)
 
-	v = MustUint("0b111")
+	v = appcfg.MustUint("0b111")
 
 	t.Equal(v.String(), "7")
 	t.NotNil(v.Get())
@@ -96,6 +101,6 @@ func TestUint(tt *testing.T) {
 	t.Equal(v.Value(&err), uint(7))
 	t.Nil(err)
 
-	t.PanicMatch(func() { v = MustUint("") }, "invalid")
-	t.PanicMatch(func() { v = MustUint("-1") }, "invalid")
+	t.PanicMatch(func() { v = appcfg.MustUint("") }, "invalid")
+	t.PanicMatch(func() { v = appcfg.MustUint("-1") }, "invalid")
 }

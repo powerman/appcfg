@@ -10,6 +10,14 @@ import (
 	"time"
 )
 
+var (
+	errEmptyOrWhite = errors.New("empty or contain only whitespaces")
+	errNoHost       = errors.New("no host")
+	errOverflows    = errors.New("value overflows")
+	errNotOneOf     = errors.New("not one of")
+	errNotBetween   = errors.New("not between")
+)
+
 // Duration can be Set only to string valid for time.ParseDuration().
 type Duration struct{ value *time.Duration }
 
@@ -48,7 +56,7 @@ type NotEmptyString struct{ value *string }
 
 func (v *NotEmptyString) set(s string) error {
 	if strings.TrimSpace(s) == "" {
-		return errors.New("empty or contain only whitespaces")
+		return errEmptyOrWhite
 	}
 	v.value = &s
 	return nil
@@ -68,7 +76,7 @@ func (v *OneOfString) set(s string) error {
 			return nil
 		}
 	}
-	return fmt.Errorf("not one of %q", v.oneOf)
+	return fmt.Errorf("%w %q", errNotOneOf, v.oneOf)
 }
 
 // Endpoint can be set only to valid url with hostname. Also it'll trim
@@ -81,7 +89,7 @@ func (v *Endpoint) set(s string) error {
 	if err != nil {
 		return err
 	} else if p.Host == "" {
-		return errors.New("no host")
+		return errNoHost
 	}
 	v.value = &s
 	return nil
@@ -98,7 +106,7 @@ func (v *Int) set(s string) error {
 	}
 	i := int(i64)
 	if int64(i) != i64 {
-		return errors.New("value overflows int: " + s)
+		return fmt.Errorf("%w int: %s", errOverflows, s)
 	}
 	v.value = &i
 	return nil
@@ -128,7 +136,7 @@ func (v *Uint) set(s string) error {
 	}
 	i := uint(i64)
 	if uint64(i) != i64 {
-		return errors.New("value overflows unsigned int: " + s)
+		return fmt.Errorf("%w unsigned int: %s", errOverflows, s)
 	}
 	v.value = &i
 	return nil
@@ -171,7 +179,7 @@ func (v *IntBetween) set(s string) error {
 	if err != nil {
 		return err
 	} else if !(v.min <= i && i <= v.max) {
-		return fmt.Errorf("not between %d and %d", v.min, v.max)
+		return fmt.Errorf("%w %d and %d", errNotBetween, v.min, v.max)
 	}
 	v.value = &i
 	return nil
@@ -185,7 +193,7 @@ func (v *Port) set(s string) error {
 	if err != nil {
 		return err
 	} else if !(0 < i && i <= math.MaxUint16) {
-		return fmt.Errorf("not between 1 and %d", math.MaxUint16)
+		return fmt.Errorf("%w 1 and %d", errNotBetween, math.MaxUint16)
 	}
 	v.value = &i
 	return nil
@@ -199,7 +207,7 @@ func (v *ListenPort) set(s string) error {
 	if err != nil {
 		return err
 	} else if !(0 <= i && i <= math.MaxUint16) {
-		return fmt.Errorf("not between 0 and %d", math.MaxUint16)
+		return fmt.Errorf("%w 0 and %d", errNotBetween, math.MaxUint16)
 	}
 	v.value = &i
 	return nil
