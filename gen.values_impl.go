@@ -434,3 +434,36 @@ func (v *ListenPort) Get() interface{} {
 func (v *ListenPort) Type() string {
 	return "ListenPort"
 }
+
+
+var _ Value = &IPNet{}
+
+// String implements flag.Value interface.
+func (v *IPNet) String() string {
+	if v == nil || v.value == nil {
+		return ""
+	}
+	return fmt.Sprint(*v.value)
+}
+
+// Set implements flag.Value interface.
+func (v *IPNet) Set(s string) error {
+	err := v.set(s)
+	if err != nil {
+		v.value = nil
+	}
+	return err
+}
+
+// Get implements flag.Getter interface.
+func (v *IPNet) Get() interface{} {
+	if v.value == nil {
+		return nil
+	}
+	return *v.value
+}
+
+// Type implements pflag.Value interface.
+func (v *IPNet) Type() string {
+	return "IPNet"
+}
