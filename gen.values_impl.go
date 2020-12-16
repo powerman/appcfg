@@ -2,6 +2,7 @@
 // Any changes will be lost if this file is regenerated.
 // see https://github.com/cheekybits/genny
 
+
 package appcfg
 
 import "fmt"
@@ -38,6 +39,7 @@ func (v *Bool) Type() string {
 	return "Bool"
 }
 
+
 var _ Value = &String{}
 
 // String implements flag.Value interface.
@@ -69,6 +71,7 @@ func (v *String) Get() interface{} {
 func (v *String) Type() string {
 	return "String"
 }
+
 
 var _ Value = &NotEmptyString{}
 
@@ -102,6 +105,7 @@ func (v *NotEmptyString) Type() string {
 	return "NotEmptyString"
 }
 
+
 var _ Value = &OneOfString{}
 
 // String implements flag.Value interface.
@@ -133,6 +137,7 @@ func (v *OneOfString) Get() interface{} {
 func (v *OneOfString) Type() string {
 	return "OneOfString"
 }
+
 
 var _ Value = &Endpoint{}
 
@@ -166,6 +171,7 @@ func (v *Endpoint) Type() string {
 	return "Endpoint"
 }
 
+
 var _ Value = &Int{}
 
 // String implements flag.Value interface.
@@ -197,6 +203,7 @@ func (v *Int) Get() interface{} {
 func (v *Int) Type() string {
 	return "Int"
 }
+
 
 var _ Value = &Int64{}
 
@@ -230,6 +237,7 @@ func (v *Int64) Type() string {
 	return "Int64"
 }
 
+
 var _ Value = &Uint{}
 
 // String implements flag.Value interface.
@@ -261,6 +269,7 @@ func (v *Uint) Get() interface{} {
 func (v *Uint) Type() string {
 	return "Uint"
 }
+
 
 var _ Value = &Uint64{}
 
@@ -294,6 +303,7 @@ func (v *Uint64) Type() string {
 	return "Uint64"
 }
 
+
 var _ Value = &Float64{}
 
 // String implements flag.Value interface.
@@ -325,6 +335,7 @@ func (v *Float64) Get() interface{} {
 func (v *Float64) Type() string {
 	return "Float64"
 }
+
 
 var _ Value = &IntBetween{}
 
@@ -358,6 +369,7 @@ func (v *IntBetween) Type() string {
 	return "IntBetween"
 }
 
+
 var _ Value = &Port{}
 
 // String implements flag.Value interface.
@@ -389,6 +401,7 @@ func (v *Port) Get() interface{} {
 func (v *Port) Type() string {
 	return "Port"
 }
+
 
 var _ Value = &ListenPort{}
 

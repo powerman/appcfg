@@ -1,4 +1,4 @@
-package appcfg
+package appcfg_test
 
 import (
 	"testing"

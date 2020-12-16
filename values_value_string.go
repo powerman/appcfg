@@ -1,4 +1,5 @@
-//go:generate genny -in=$GOFILE -out=gen.$GOFILE gen "NotEmptyString=String,OneOfString,Endpoint"
+//go:generate gobin -m -run github.com/cheekybits/genny -in=$GOFILE -out=gen.$GOFILE gen "NotEmptyString=String,OneOfString,Endpoint"
+//go:generate sed -i -e "\\,^//go:generate,d" gen.$GOFILE
 
 package appcfg
 

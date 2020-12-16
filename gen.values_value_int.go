@@ -2,6 +2,7 @@
 // Any changes will be lost if this file is regenerated.
 // see https://github.com/cheekybits/genny
 
+
 package appcfg
 
 // Value is like Get except it returns zero value and set *err to
@@ -14,6 +15,7 @@ func (v *Int) Value(err *error) (val int) { //nolint:gocritic // ptrToRefParam.
 	return *v.value
 }
 
+
 // Value is like Get except it returns zero value and set *err to
 // RequiredError if unset.
 func (v *IntBetween) Value(err *error) (val int) { //nolint:gocritic // ptrToRefParam.
@@ -23,6 +25,7 @@ func (v *IntBetween) Value(err *error) (val int) { //nolint:gocritic // ptrToRef
 	}
 	return *v.value
 }
+
 
 // Value is like Get except it returns zero value and set *err to
 // RequiredError if unset.
