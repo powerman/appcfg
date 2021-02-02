@@ -310,8 +310,8 @@ github.com/pmezard/go-difflib v1.0.0/go.mod h1:iKH77koFhYxTK1pcRnkKkqfTogsbg7gZN
 github.com/polyfloyd/go-errorlint v0.0.0-20201006195004-351e25ade6e3 h1:Amgs0nbayPhBNGh1qPqqr2e7B2qNAcBgRjnBH/lmn8k=
 github.com/polyfloyd/go-errorlint v0.0.0-20201006195004-351e25ade6e3/go.mod h1:wi9BfjxjF/bwiZ701TzmfKu6UKC357IOAtNr0Td0Lvw=
 github.com/posener/complete v1.1.1/go.mod h1:em0nMJCgc9GFtwrmVmEMR/ZL6WyhyjMBndrE9hABlRI=
-github.com/powerman/check v1.3.0 h1:GsncV4RbbC4nZEzLTVpUIdp1rgZil4N36D/XuPZUA60=
-github.com/powerman/check v1.3.0/go.mod h1:k/8NCUQwepaKJKctBBKjQo84jvGEvKiumD9pDl87RB0=
+github.com/powerman/check v1.3.1 h1:86xiEjMNn0K4b3bhQsLfrLqJb0DWLXHBK3wBd5PoJH4=
+github.com/powerman/check v1.3.1/go.mod h1:k/8NCUQwepaKJKctBBKjQo84jvGEvKiumD9pDl87RB0=
 github.com/prometheus/client_golang v0.9.1/go.mod h1:7SWBe2y4D6OKWSNQJUaRYU/AaXPKyh/dDVn+NZz0KFw=
 github.com/prometheus/client_golang v0.9.3/go.mod h1:/TN21ttK/J9q6uSwhBd54HahCDft0ttaMvbicHlPoso=
 github.com/prometheus/client_model v0.0.0-20180712105110-5c3871d89910/go.mod h1:MbSGuTsp3dbXC40dX6PRTWyKYBIrTGTE9sqQNg2J8bo=
