@@ -35,6 +35,6 @@ func (v *Duration) Get() interface{} {
 }
 
 // Type implements pflag.Value interface.
-func (v *Duration) Type() string {
+func (*Duration) Type() string {
 	return "Duration"
 }
