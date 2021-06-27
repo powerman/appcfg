@@ -1,4 +1,5 @@
-//go:generate gobin -m -run github.com/cheekybits/genny -in=$GOFILE -out=gen.$GOFILE gen "Duration=Bool,String,NotEmptyString,OneOfString,Endpoint,Int,Int64,Uint,Uint64,Float64,IntBetween,Port,ListenPort,IPNet"
+//go:generate -command genny sh -c "$(git rev-parse --show-toplevel)/.gobincache/$DOLLAR{DOLLAR}0 \"$DOLLAR{DOLLAR}@\"" genny
+//go:generate genny -in=$GOFILE -out=gen.$GOFILE gen "Duration=Bool,String,NotEmptyString,OneOfString,Endpoint,Int,Int64,Uint,Uint64,Float64,IntBetween,Port,ListenPort,IPNet"
 //go:generate sed -i -e "\\,^//go:generate,d" gen.$GOFILE
 
 package appcfg
