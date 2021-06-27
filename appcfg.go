@@ -60,7 +60,7 @@ func WrapErr(err error, fs *flag.FlagSet, cfgs ...interface{}) error {
 				}
 			})
 		}
-		return wrapErr(reqErr, flagName, cfgs...)
+		return doWrapErr(reqErr, flagName, cfgs...)
 	}
 	return err
 }
@@ -78,12 +78,12 @@ func WrapPErr(err error, fs *pflag.FlagSet, cfgs ...interface{}) error {
 				}
 			})
 		}
-		return wrapErr(reqErr, flagName, cfgs...)
+		return doWrapErr(reqErr, flagName, cfgs...)
 	}
 	return err
 }
 
-func wrapErr(reqErr *RequiredError, flagName string, cfgs ...interface{}) error {
+func doWrapErr(reqErr *RequiredError, flagName string, cfgs ...interface{}) error {
 	var lastErr error
 	for _, cfg := range cfgs {
 		forStruct(cfg, func(value Value, name string, tags Tags) {
@@ -116,7 +116,7 @@ func forStruct(cfg interface{}, handle func(Value, string, Tags)) {
 		}
 		f.Tag = reflect.StructTag(strings.ReplaceAll(string(f.Tag), "\n", " "))
 		f.Tag = reflect.StructTag(strings.ReplaceAll(string(f.Tag), "\t", " "))
-		value := val.Elem().FieldByName(f.Name).Addr().Interface().(Value)
+		value := val.Elem().FieldByName(f.Name).Addr().Interface().(Value) //nolint:forcetypeassert // Want panic.
 		handle(value, f.Name, f.Tag)
 	}
 }

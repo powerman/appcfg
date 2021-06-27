@@ -19,6 +19,8 @@ var (
 	errNotBetween   = errors.New("not between")
 )
 
+const parseBits = 64
+
 // Duration can be Set only to string valid for time.ParseDuration().
 type Duration struct{ value *time.Duration }
 
@@ -118,7 +120,7 @@ func (v *Int) set(s string) error {
 type Int64 struct{ value *int64 }
 
 func (v *Int64) set(s string) error {
-	i, err := strconv.ParseInt(s, 0, 64)
+	i, err := strconv.ParseInt(s, 0, parseBits)
 	if err != nil {
 		return err
 	}
@@ -148,7 +150,7 @@ func (v *Uint) set(s string) error {
 type Uint64 struct{ value *uint64 }
 
 func (v *Uint64) set(s string) error {
-	i, err := strconv.ParseUint(s, 0, 64)
+	i, err := strconv.ParseUint(s, 0, parseBits)
 	if err != nil {
 		return err
 	}
@@ -160,7 +162,7 @@ func (v *Uint64) set(s string) error {
 type Float64 struct{ value *float64 }
 
 func (v *Float64) set(s string) error {
-	i, err := strconv.ParseFloat(s, 64)
+	i, err := strconv.ParseFloat(s, parseBits)
 	if err != nil {
 		return err
 	}

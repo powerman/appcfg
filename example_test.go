@@ -26,8 +26,8 @@ var extCfg = struct { // Type defines constraint types and providers for each ex
 // configuration values from all sources except flags, and will setup
 // flags on given fs.
 func initExtCfg(fs *flag.FlagSet) error {
-	const EnvPrefix = "EXAMPLE_"
-	fromEnv := appcfg.NewFromEnv(EnvPrefix)
+	const envPrefix = "EXAMPLE_"
+	fromEnv := appcfg.NewFromEnv(envPrefix)
 	err := appcfg.ProvideStruct(&extCfg, fromEnv) // Set appCfg fields from environment.
 
 	extCfg.fs = fs
@@ -64,14 +64,16 @@ func getCfg() (cfg *config, err error) {
 func Example() {
 	err := initExtCfg(flag.CommandLine)
 	if err != nil {
-		log.Fatal(err)
+		log.Print(err)
+		return
 	}
 
 	flag.Parse()
 
 	cfg, err := getCfg()
 	if err != nil {
-		log.Fatal(err)
+		log.Print(err)
+		return
 	}
 	log.Printf("cfg: %#v", cfg)
 }

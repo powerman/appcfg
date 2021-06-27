@@ -35,7 +35,7 @@ func (v *Bool) Get() interface{} {
 }
 
 // Type implements pflag.Value interface.
-func (v *Bool) Type() string {
+func (*Bool) Type() string {
 	return "Bool"
 }
 
@@ -68,7 +68,7 @@ func (v *String) Get() interface{} {
 }
 
 // Type implements pflag.Value interface.
-func (v *String) Type() string {
+func (*String) Type() string {
 	return "String"
 }
 
@@ -101,7 +101,7 @@ func (v *NotEmptyString) Get() interface{} {
 }
 
 // Type implements pflag.Value interface.
-func (v *NotEmptyString) Type() string {
+func (*NotEmptyString) Type() string {
 	return "NotEmptyString"
 }
 
@@ -134,7 +134,7 @@ func (v *OneOfString) Get() interface{} {
 }
 
 // Type implements pflag.Value interface.
-func (v *OneOfString) Type() string {
+func (*OneOfString) Type() string {
 	return "OneOfString"
 }
 
@@ -167,7 +167,7 @@ func (v *Endpoint) Get() interface{} {
 }
 
 // Type implements pflag.Value interface.
-func (v *Endpoint) Type() string {
+func (*Endpoint) Type() string {
 	return "Endpoint"
 }
 
@@ -200,7 +200,7 @@ func (v *Int) Get() interface{} {
 }
 
 // Type implements pflag.Value interface.
-func (v *Int) Type() string {
+func (*Int) Type() string {
 	return "Int"
 }
 
@@ -233,7 +233,7 @@ func (v *Int64) Get() interface{} {
 }
 
 // Type implements pflag.Value interface.
-func (v *Int64) Type() string {
+func (*Int64) Type() string {
 	return "Int64"
 }
 
@@ -266,7 +266,7 @@ func (v *Uint) Get() interface{} {
 }
 
 // Type implements pflag.Value interface.
-func (v *Uint) Type() string {
+func (*Uint) Type() string {
 	return "Uint"
 }
 
@@ -299,7 +299,7 @@ func (v *Uint64) Get() interface{} {
 }
 
 // Type implements pflag.Value interface.
-func (v *Uint64) Type() string {
+func (*Uint64) Type() string {
 	return "Uint64"
 }
 
@@ -332,7 +332,7 @@ func (v *Float64) Get() interface{} {
 }
 
 // Type implements pflag.Value interface.
-func (v *Float64) Type() string {
+func (*Float64) Type() string {
 	return "Float64"
 }
 
@@ -365,7 +365,7 @@ func (v *IntBetween) Get() interface{} {
 }
 
 // Type implements pflag.Value interface.
-func (v *IntBetween) Type() string {
+func (*IntBetween) Type() string {
 	return "IntBetween"
 }
 
@@ -398,7 +398,7 @@ func (v *Port) Get() interface{} {
 }
 
 // Type implements pflag.Value interface.
-func (v *Port) Type() string {
+func (*Port) Type() string {
 	return "Port"
 }
 
@@ -431,7 +431,7 @@ func (v *ListenPort) Get() interface{} {
 }
 
 // Type implements pflag.Value interface.
-func (v *ListenPort) Type() string {
+func (*ListenPort) Type() string {
 	return "ListenPort"
 }
 
@@ -464,6 +464,6 @@ func (v *IPNet) Get() interface{} {
 }
 
 // Type implements pflag.Value interface.
-func (v *IPNet) Type() string {
+func (*IPNet) Type() string {
 	return "IPNet"
 }
