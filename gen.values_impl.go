@@ -467,3 +467,36 @@ func (v *IPNet) Get() interface{} {
 func (*IPNet) Type() string {
 	return "IPNet"
 }
+
+
+var _ Value = &HostPort{}
+
+// String implements flag.Value interface.
+func (v *HostPort) String() string {
+	if v == nil || v.value == nil {
+		return ""
+	}
+	return fmt.Sprint(*v.value)
+}
+
+// Set implements flag.Value interface.
+func (v *HostPort) Set(s string) error {
+	err := v.set(s)
+	if err != nil {
+		v.value = nil
+	}
+	return err
+}
+
+// Get implements flag.Getter interface.
+func (v *HostPort) Get() interface{} {
+	if v.value == nil {
+		return nil
+	}
+	return *v.value
+}
+
+// Type implements pflag.Value interface.
+func (*HostPort) Type() string {
+	return "HostPort"
+}

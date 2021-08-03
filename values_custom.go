@@ -104,3 +104,13 @@ func (v *IPNet) Value(err *error) (val *net.IPNet) { //nolint:gocritic // ptrToR
 	}
 	return *v.value
 }
+
+// Value is like Get except it returns zero value and set *err to
+// RequiredError if unset.
+func (v *HostPort) Value(err *error) (host string, port int) { //nolint:gocritic // ptrToRefParam.
+	if v.value == nil {
+		*err = &RequiredError{v}
+		return host, port
+	}
+	return v.host, v.port
+}
