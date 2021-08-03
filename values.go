@@ -227,3 +227,27 @@ func (v *IPNet) set(s string) error {
 	v.value = &ipNet
 	return nil
 }
+
+// HostPort can be set to CIDR address.
+type HostPort struct {
+	value *string
+	host  string
+	port  int
+}
+
+func (v *HostPort) set(s string) error {
+	host, port, err := net.SplitHostPort(s)
+	if err != nil {
+		return err
+	}
+	if host == "" {
+		return errNoHost
+	}
+	v.port, err = strconv.Atoi(port)
+	if err != nil {
+		return fmt.Errorf("port: %w", err)
+	}
+	v.host = host
+	v.value = &s
+	return nil
+}

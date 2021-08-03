@@ -135,3 +135,14 @@ func MustIPNet(s string) IPNet {
 	}
 	return v
 }
+
+
+// MustHostPort returns HostPort initialized with given value or panics.
+func MustHostPort(s string) HostPort {
+	var v HostPort
+	err := v.Set(s)
+	if err != nil {
+		panic(err)
+	}
+	return v
+}

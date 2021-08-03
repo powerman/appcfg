@@ -136,3 +136,42 @@ func TestIPNet(tt *testing.T) {
 
 	t.PanicMatch(func() { v = appcfg.MustIPNet("") }, "invalid")
 }
+
+func TestHostPort(tt *testing.T) {
+	t := check.T(tt)
+	t.Parallel()
+
+	var v appcfg.HostPort
+	t.Equal(v.Type(), "HostPort")
+
+	t.Equal(v.String(), "")
+	t.Nil(v.Get())
+	var err error
+	t.Zero(v.Value(&err))
+	t.Match(err, "required")
+
+	t.Nil(v.Set("0.0.0.0:0"))
+
+	t.Equal(v.String(), "0.0.0.0:0")
+	t.NotNil(v.Get())
+	err = nil
+	host, port := v.Value(&err)
+	t.Equal(host, "0.0.0.0")
+	t.Equal(port, 0)
+	t.Nil(err)
+
+	v = appcfg.MustHostPort("localhost:80")
+
+	t.Equal(v.String(), "localhost:80")
+	t.NotNil(v.Get())
+	err = nil
+	host, port = v.Value(&err)
+	t.Equal(host, "localhost")
+	t.Equal(port, 80)
+	t.Nil(err)
+
+	t.PanicMatch(func() { v = appcfg.MustHostPort("localhost") }, "missing port")
+	t.PanicMatch(func() { v = appcfg.MustHostPort("localhost:") }, "port: .* parsing")
+	t.PanicMatch(func() { v = appcfg.MustHostPort("localhost:http") }, "port: .* parsing")
+	t.PanicMatch(func() { v = appcfg.MustHostPort(":80") }, "no host")
+}
