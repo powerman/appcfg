@@ -3,6 +3,7 @@ package appcfg
 import (
 	"fmt"
 	"os"
+	"strings"
 )
 
 // Tags provide access to tags attached to some Value.
@@ -25,14 +26,19 @@ type Provider interface {
 // FromEnv implements Provider using value from environment variable with
 // name defined by tag "env" with optional prefix.
 type FromEnv struct {
-	prefix string
+	prefix    string
+	trimSpace bool
 }
 
 // NewFromEnv creates new FromEnv with optional prefix.
-func NewFromEnv(prefix string) *FromEnv {
-	return &FromEnv{
+func NewFromEnv(prefix string, opts ...FromEnvOption) *FromEnv {
+	f := &FromEnv{
 		prefix: prefix,
 	}
+	for _, opt := range opts {
+		opt(f)
+	}
+	return f
 }
 
 // Provide implements Provider.
@@ -43,6 +49,9 @@ func (f *FromEnv) Provide(value Value, _ string, tags Tags) (bool, error) {
 	}
 	name = f.prefix + name
 	if s, ok := os.LookupEnv(name); ok {
+		if f.trimSpace {
+			s = strings.TrimSpace(s)
+		}
 		err := value.Set(s)
 		if err != nil {
 			err = fmt.Errorf("$%s=%q: %w", name, s, err)
@@ -50,4 +59,13 @@ func (f *FromEnv) Provide(value Value, _ string, tags Tags) (bool, error) {
 		return true, err
 	}
 	return false, nil
+}
+
+// FromEnvOption is an option for NewFromEnv.
+type FromEnvOption func(*FromEnv)
+
+// FromEnvTrimSpace removes from environment variables value all leading
+// and trailing white space, as defined by Unicode.
+func FromEnvTrimSpace() FromEnvOption {
+	return func(f *FromEnv) { f.trimSpace = true }
 }

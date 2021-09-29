@@ -27,7 +27,7 @@ var extCfg = struct { // Type defines constraint types and providers for each ex
 // flags on given fs.
 func initExtCfg(fs *flag.FlagSet) error {
 	const EnvPrefix = "EXAMPLE_"
-	fromEnv := appcfg.NewFromEnv(EnvPrefix)
+	fromEnv := appcfg.NewFromEnv(EnvPrefix, appcfg.FromEnvTrimSpace())
 	err := appcfg.ProvideStruct(&extCfg, fromEnv) // Set appCfg fields from environment.
 
 	extCfg.fs = fs
