@@ -21,9 +21,9 @@ func Test(tt *testing.T) {
 	t.Run("required", func(tt *testing.T) {
 		t := check.T(tt)
 		errMatch(t, "", `^Retries .* required`)
-		os.Setenv("EXAMPLE_RETRIES", "1")
+		os.Setenv("EXAMPLE_RETRIES", "  1  ")
 		errMatch(t, "", `^Host .* required`)
-		os.Setenv("EXAMPLE_HOST", "example.com")
+		os.Setenv("EXAMPLE_HOST", " example.com")
 	})
 	t.Run("default", func(tt *testing.T) {
 		t := check.T(tt)
