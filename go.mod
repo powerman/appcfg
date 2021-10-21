@@ -7,7 +7,7 @@ require (
 	github.com/golangci/golangci-lint v1.41.1
 	github.com/mattn/goveralls v0.0.11
 	github.com/powerman/check v1.6.0
-	github.com/smartystreets/goconvey v1.6.4
+	github.com/smartystreets/goconvey v1.6.7
 	github.com/spf13/pflag v1.0.5
 )
 
