@@ -7,7 +7,7 @@ require (
 	github.com/golangci/golangci-lint v1.41.1
 	github.com/mattn/goveralls v0.0.11
 	github.com/powerman/check v1.6.0
-	github.com/smartystreets/goconvey v1.6.4
+	github.com/smartystreets/goconvey v1.7.0
 	github.com/spf13/pflag v1.0.5
 )
 
@@ -115,7 +115,7 @@ require (
 	github.com/securego/gosec/v2 v2.8.0 // indirect
 	github.com/shazow/go-diff v0.0.0-20160112020656-b6b7b6733b8c // indirect
 	github.com/sirupsen/logrus v1.8.1 // indirect
-	github.com/smartystreets/assertions v0.0.0-20180927180507-b2de0cb4f26d // indirect
+	github.com/smartystreets/assertions v1.2.0 // indirect
 	github.com/sonatard/noctx v0.0.1 // indirect
 	github.com/sourcegraph/go-diff v0.6.1 // indirect
 	github.com/spf13/afero v1.1.2 // indirect
