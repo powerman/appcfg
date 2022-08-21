@@ -14,7 +14,7 @@ func (v *Bool) String() string {
 	if v == nil || v.value == nil {
 		return ""
 	}
-	return fmt.Sprint(*v.value)
+	return fmt.Sprint(*v.value) //nolint:gocritic // For genny.
 }
 
 // Set implements flag.Value interface.
@@ -47,7 +47,7 @@ func (v *String) String() string {
 	if v == nil || v.value == nil {
 		return ""
 	}
-	return fmt.Sprint(*v.value)
+	return fmt.Sprint(*v.value) //nolint:gocritic // For genny.
 }
 
 // Set implements flag.Value interface.
@@ -80,7 +80,7 @@ func (v *NotEmptyString) String() string {
 	if v == nil || v.value == nil {
 		return ""
 	}
-	return fmt.Sprint(*v.value)
+	return fmt.Sprint(*v.value) //nolint:gocritic // For genny.
 }
 
 // Set implements flag.Value interface.
@@ -113,7 +113,7 @@ func (v *OneOfString) String() string {
 	if v == nil || v.value == nil {
 		return ""
 	}
-	return fmt.Sprint(*v.value)
+	return fmt.Sprint(*v.value) //nolint:gocritic // For genny.
 }
 
 // Set implements flag.Value interface.
@@ -146,7 +146,7 @@ func (v *Endpoint) String() string {
 	if v == nil || v.value == nil {
 		return ""
 	}
-	return fmt.Sprint(*v.value)
+	return fmt.Sprint(*v.value) //nolint:gocritic // For genny.
 }
 
 // Set implements flag.Value interface.
@@ -179,7 +179,7 @@ func (v *Int) String() string {
 	if v == nil || v.value == nil {
 		return ""
 	}
-	return fmt.Sprint(*v.value)
+	return fmt.Sprint(*v.value) //nolint:gocritic // For genny.
 }
 
 // Set implements flag.Value interface.
@@ -212,7 +212,7 @@ func (v *Int64) String() string {
 	if v == nil || v.value == nil {
 		return ""
 	}
-	return fmt.Sprint(*v.value)
+	return fmt.Sprint(*v.value) //nolint:gocritic // For genny.
 }
 
 // Set implements flag.Value interface.
@@ -245,7 +245,7 @@ func (v *Uint) String() string {
 	if v == nil || v.value == nil {
 		return ""
 	}
-	return fmt.Sprint(*v.value)
+	return fmt.Sprint(*v.value) //nolint:gocritic // For genny.
 }
 
 // Set implements flag.Value interface.
@@ -278,7 +278,7 @@ func (v *Uint64) String() string {
 	if v == nil || v.value == nil {
 		return ""
 	}
-	return fmt.Sprint(*v.value)
+	return fmt.Sprint(*v.value) //nolint:gocritic // For genny.
 }
 
 // Set implements flag.Value interface.
@@ -311,7 +311,7 @@ func (v *Float64) String() string {
 	if v == nil || v.value == nil {
 		return ""
 	}
-	return fmt.Sprint(*v.value)
+	return fmt.Sprint(*v.value) //nolint:gocritic // For genny.
 }
 
 // Set implements flag.Value interface.
@@ -344,7 +344,7 @@ func (v *IntBetween) String() string {
 	if v == nil || v.value == nil {
 		return ""
 	}
-	return fmt.Sprint(*v.value)
+	return fmt.Sprint(*v.value) //nolint:gocritic // For genny.
 }
 
 // Set implements flag.Value interface.
@@ -377,7 +377,7 @@ func (v *Port) String() string {
 	if v == nil || v.value == nil {
 		return ""
 	}
-	return fmt.Sprint(*v.value)
+	return fmt.Sprint(*v.value) //nolint:gocritic // For genny.
 }
 
 // Set implements flag.Value interface.
@@ -410,7 +410,7 @@ func (v *ListenPort) String() string {
 	if v == nil || v.value == nil {
 		return ""
 	}
-	return fmt.Sprint(*v.value)
+	return fmt.Sprint(*v.value) //nolint:gocritic // For genny.
 }
 
 // Set implements flag.Value interface.
@@ -443,7 +443,7 @@ func (v *IPNet) String() string {
 	if v == nil || v.value == nil {
 		return ""
 	}
-	return fmt.Sprint(*v.value)
+	return fmt.Sprint(*v.value) //nolint:gocritic // For genny.
 }
 
 // Set implements flag.Value interface.
@@ -476,7 +476,7 @@ func (v *HostPort) String() string {
 	if v == nil || v.value == nil {
 		return ""
 	}
-	return fmt.Sprint(*v.value)
+	return fmt.Sprint(*v.value) //nolint:gocritic // For genny.
 }
 
 // Set implements flag.Value interface.
