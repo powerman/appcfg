@@ -25,6 +25,11 @@ func (v *Bool) Value(err *error) (val bool) { //nolint:gocritic // ptrToRefParam
 	return *v.value
 }
 
+// IsBoolFlag implements extended flag.Value interface.
+func (*Bool) IsBoolFlag() bool {
+	return true
+}
+
 // NewOneOfString returns OneOfString without value set.
 func NewOneOfString(oneOf []string) OneOfString {
 	return OneOfString{oneOf: oneOf}
