@@ -34,6 +34,7 @@ func ProvideStruct(cfg interface{}, providers ...Provider) error {
 				break
 			}
 			if ok {
+				_ = value.Get() // Mark previous value as completed (in case it's a Slice).
 				break
 			}
 		}

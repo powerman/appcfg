@@ -1,6 +1,19 @@
 package appcfg
 
-import "reflect"
+import (
+	"errors"
+	"reflect"
+)
+
+var (
+	errEmptyOrWhite = errors.New("empty or contain only whitespaces")
+	errNoHost       = errors.New("no host")
+	errOverflows    = errors.New("value overflows")
+	errNotOneOf     = errors.New("not one of")
+	errNotBetween   = errors.New("not between")
+)
+
+const parseBits = 64
 
 // Value provides a way to set value of any type from (one or several)
 // string with validation. It's suitable for receiving configuration from
@@ -11,9 +24,9 @@ import "reflect"
 // require more strict semantics to distinguish between zero and unset
 // values (Set resets value to unset on error, Get return nil on unset).
 //
-// Types containing multiple values should also implement SliceValue and
-// use it Replace() method to avoid joining values from different sources
-// (like environment variable and flag).
+// Type containing multiple values should either replace or append value (or values if it can
+// parse multiple values from a string) on Set depending on call sequence: replace if Set was
+// called after Get, otherwise append.
 //
 // Types containing boolean value should also provide IsBoolFlag() method
 // returning true.
@@ -22,16 +35,6 @@ type Value interface {
 	Set(string) error // Unset value on error.
 	Get() interface{} // Return nil when not set (no default and no Set() or last Set() failed).
 	Type() string     // Value type for help/usage.
-}
-
-// SliceValue is same as github.com/spf13/pflag.SliceValue.
-type SliceValue interface {
-	// Append adds the specified value to the end of the flag value list.
-	Append(string) error
-	// Replace will fully overwrite any data currently in the flag value list.
-	Replace([]string) error
-	// GetSlice returns the flag value list as an array of strings.
-	GetSlice() []string
 }
 
 //nolint:gochecknoglobals // By design.
