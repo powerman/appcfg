@@ -1,0 +1,10 @@
+#!/bin/bash
+export PATH="$PWD/.buildcache/bin:$PATH"
+
+set -x -e -o pipefail
+
+go generate
+
+golangci-lint run
+
+go test -race -timeout=60s "$@" ./...

@@ -53,9 +53,7 @@ jobs:
           restore-keys: |
             v4-test-${{ runner.os }}-
 
-      - run: go generate
-      - run: .buildcache/bin/golangci-lint run
-      - run: go test -race ./...
+      - run: ./scripts/test
 
       - name: Report code coverage
         env:
