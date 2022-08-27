@@ -1,7 +1,6 @@
 package appcfg
 
 import (
-	"errors"
 	"fmt"
 	"math"
 	"net"
@@ -11,18 +10,10 @@ import (
 	"time"
 )
 
-var (
-	errEmptyOrWhite = errors.New("empty or contain only whitespaces")
-	errNoHost       = errors.New("no host")
-	errOverflows    = errors.New("value overflows")
-	errNotOneOf     = errors.New("not one of")
-	errNotBetween   = errors.New("not between")
-)
-
-const parseBits = 64
-
-// Duration can be Set only to string valid for time.ParseDuration().
-type Duration struct{ value *time.Duration }
+// Duration can be set only to string valid for time.ParseDuration().
+type Duration struct {
+	value *time.Duration
+}
 
 func (v *Duration) set(s string) error {
 	d, err := time.ParseDuration(s)
@@ -34,7 +25,9 @@ func (v *Duration) set(s string) error {
 }
 
 // Bool can be set to 1, t, T, TRUE, true, True, 0, f, F, FALSE, false, False.
-type Bool struct{ value *bool }
+type Bool struct {
+	value *bool
+}
 
 func (v *Bool) set(s string) error {
 	b, err := strconv.ParseBool(s)
@@ -46,7 +39,9 @@ func (v *Bool) set(s string) error {
 }
 
 // String can be set to any string, even empty.
-type String struct{ value *string }
+type String struct {
+	value *string
+}
 
 func (v *String) set(s string) error {
 	v.value = &s
@@ -55,7 +50,9 @@ func (v *String) set(s string) error {
 
 // NotEmptyString can be set to any string which contains at least one
 // non-whitespace symbol.
-type NotEmptyString struct{ value *string }
+type NotEmptyString struct {
+	value *string
+}
 
 func (v *NotEmptyString) set(s string) error {
 	if strings.TrimSpace(s) == "" {
@@ -84,7 +81,9 @@ func (v *OneOfString) set(s string) error {
 
 // Endpoint can be set only to valid url with hostname. Also it'll trim
 // all / symbols at end, to make it easier to append paths to endpoint.
-type Endpoint struct{ value *string }
+type Endpoint struct {
+	value *string
+}
 
 func (v *Endpoint) set(s string) error {
 	s = strings.TrimRight(s, "/")
@@ -100,7 +99,9 @@ func (v *Endpoint) set(s string) error {
 
 // Int can be set to integer value.
 // It's allowed to use 0b, 0o and 0x prefixes, and also underscores.
-type Int struct{ value *int }
+type Int struct {
+	value *int
+}
 
 func (v *Int) set(s string) error {
 	i64, err := strconv.ParseInt(s, 0, strconv.IntSize)
@@ -117,7 +118,9 @@ func (v *Int) set(s string) error {
 
 // Int64 can be set to 64-bit integer value.
 // It's allowed to use 0b, 0o and 0x prefixes, and also underscores.
-type Int64 struct{ value *int64 }
+type Int64 struct {
+	value *int64
+}
 
 func (v *Int64) set(s string) error {
 	i, err := strconv.ParseInt(s, 0, parseBits)
@@ -130,7 +133,9 @@ func (v *Int64) set(s string) error {
 
 // Uint can be set to unsigned integer value.
 // It's allowed to use 0b, 0o and 0x prefixes, and also underscores.
-type Uint struct{ value *uint }
+type Uint struct {
+	value *uint
+}
 
 func (v *Uint) set(s string) error {
 	i64, err := strconv.ParseUint(s, 0, strconv.IntSize)
@@ -147,7 +152,9 @@ func (v *Uint) set(s string) error {
 
 // Uint64 can be set to unsigned 64-bit integer value.
 // It's allowed to use 0b, 0o and 0x prefixes, and also underscores.
-type Uint64 struct{ value *uint64 }
+type Uint64 struct {
+	value *uint64
+}
 
 func (v *Uint64) set(s string) error {
 	i, err := strconv.ParseUint(s, 0, parseBits)
@@ -159,7 +166,9 @@ func (v *Uint64) set(s string) error {
 }
 
 // Float64 can be set to 64-bit floating-point number.
-type Float64 struct{ value *float64 }
+type Float64 struct {
+	value *float64
+}
 
 func (v *Float64) set(s string) error {
 	i, err := strconv.ParseFloat(s, parseBits)
@@ -189,7 +198,9 @@ func (v *IntBetween) set(s string) error {
 }
 
 // Port can be set to integer value between 1 and 65535.
-type Port struct{ value *int }
+type Port struct {
+	value *int
+}
 
 func (v *Port) set(s string) error {
 	i, err := strconv.Atoi(s)
@@ -203,7 +214,9 @@ func (v *Port) set(s string) error {
 }
 
 // ListenPort can be set to integer value between 0 and 65535.
-type ListenPort struct{ value *int }
+type ListenPort struct {
+	value *int
+}
 
 func (v *ListenPort) set(s string) error {
 	i, err := strconv.Atoi(s)
@@ -217,7 +230,9 @@ func (v *ListenPort) set(s string) error {
 }
 
 // IPNet can be set to CIDR address.
-type IPNet struct{ value **net.IPNet }
+type IPNet struct {
+	value **net.IPNet
+}
 
 func (v *IPNet) set(s string) error {
 	_, ipNet, err := net.ParseCIDR(s)

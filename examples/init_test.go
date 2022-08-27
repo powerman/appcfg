@@ -35,6 +35,7 @@ func errMatch(t *check.C, flags string, match string) {
 }
 
 func errMatchEnv(t *check.C, name, val, match string) {
+	t.Helper()
 	old, ok := os.LookupEnv(name)
 	if ok {
 		defer os.Setenv(name, old)
