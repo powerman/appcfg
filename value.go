@@ -31,15 +31,15 @@ const parseBits = 64
 // Types containing boolean value should also provide IsBoolFlag() method
 // returning true.
 type Value interface {
-	String() string   // May be called on zero-valued receiver.
-	Set(string) error // Unset value on error.
-	Get() interface{} // Return nil when not set (no default and no Set() or last Set() failed).
-	Type() string     // Value type for help/usage.
+	String() string     // May be called on zero-valued receiver.
+	Set(s string) error // Unset value on error.
+	Get() any           // Return nil when not set (no default and no Set() or last Set() failed).
+	Type() string       // Value type for help/usage.
 }
 
 //nolint:gochecknoglobals // By design.
 var typValue = reflect.TypeOf(new(Value)).Elem()
 
 func implementsValue(typ reflect.Type) bool {
-	return typ.Implements(typValue) || reflect.PtrTo(typ).Implements(typValue)
+	return typ.Implements(typValue) || reflect.PointerTo(typ).Implements(typValue)
 }

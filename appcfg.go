@@ -24,7 +24,7 @@ import (
 // able to show values set by other providers as flag defaults.
 //
 // Returns error if any provider will try to set invalid value.
-func ProvideStruct(cfg interface{}, providers ...Provider) error {
+func ProvideStruct(cfg any, providers ...Provider) error {
 	var lastErr error
 	forStruct(cfg, func(value Value, name string, tags Tags) {
 		for _, provider := range providers {
@@ -51,8 +51,9 @@ func (*RequiredError) Error() string { return "value required" }
 // WrapErr adds more details about err.Value (if err is a RequiredError)
 // by looking for related flag name and field name/tags in given fs and
 // cfgs, otherwise returns err as is.
-func WrapErr(err error, fs *flag.FlagSet, cfgs ...interface{}) error {
-	if reqErr := new(RequiredError); errors.As(err, &reqErr) {
+func WrapErr(err error, fs *flag.FlagSet, cfgs ...any) error {
+	reqErr := new(RequiredError)
+	if errors.As(err, &reqErr) {
 		var flagName string
 		if fs != nil {
 			fs.VisitAll(func(f *flag.Flag) {
@@ -69,8 +70,9 @@ func WrapErr(err error, fs *flag.FlagSet, cfgs ...interface{}) error {
 // WrapPErr adds more details about err.Value (if err is a RequiredError)
 // by looking for related flag name and field name/tags in given fs and
 // cfgs, otherwise returns err as is.
-func WrapPErr(err error, fs *pflag.FlagSet, cfgs ...interface{}) error {
-	if reqErr := new(RequiredError); errors.As(err, &reqErr) {
+func WrapPErr(err error, fs *pflag.FlagSet, cfgs ...any) error {
+	reqErr := new(RequiredError)
+	if errors.As(err, &reqErr) {
 		var flagName string
 		if fs != nil {
 			fs.VisitAll(func(f *pflag.Flag) {
@@ -84,7 +86,7 @@ func WrapPErr(err error, fs *pflag.FlagSet, cfgs ...interface{}) error {
 	return err
 }
 
-func doWrapErr(reqErr *RequiredError, flagName string, cfgs ...interface{}) error {
+func doWrapErr(reqErr *RequiredError, flagName string, cfgs ...any) error {
 	var lastErr error
 	for _, cfg := range cfgs {
 		forStruct(cfg, func(value Value, name string, tags Tags) {
@@ -99,7 +101,7 @@ func doWrapErr(reqErr *RequiredError, flagName string, cfgs ...interface{}) erro
 	return lastErr
 }
 
-func forStruct(cfg interface{}, handle func(Value, string, Tags)) {
+func forStruct(cfg any, handle func(Value, string, Tags)) {
 	val := reflect.ValueOf(cfg)
 	typ := val.Type()
 	if typ.Kind() != reflect.Ptr || typ.Elem().Kind() != reflect.Struct {
@@ -107,7 +109,7 @@ func forStruct(cfg interface{}, handle func(Value, string, Tags)) {
 	}
 	typ = typ.Elem()
 
-	for i := 0; i < typ.NumField(); i++ {
+	for i := range typ.NumField() {
 		f := typ.Field(i)
 		if f.PkgPath != "" {
 			continue
@@ -122,7 +124,7 @@ func forStruct(cfg interface{}, handle func(Value, string, Tags)) {
 	}
 }
 
-func field(name string, sources ...interface{}) string {
+func field(name string, sources ...any) string {
 	s := strings.TrimSpace(strings.Join(strings.Fields(fmt.Sprintln(sources...)), " "))
 	if s != "" {
 		return fmt.Sprintf("%s (%s)", name, s)

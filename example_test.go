@@ -81,4 +81,5 @@ func Example() {
 		return
 	}
 	log.Printf("cfg: %#v", cfg)
+	// Output:
 }

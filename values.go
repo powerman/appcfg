@@ -190,7 +190,7 @@ func (v *IntBetween) set(s string) error {
 	i, err := strconv.Atoi(s)
 	if err != nil {
 		return err
-	} else if !(v.min <= i && i <= v.max) {
+	} else if v.min > i || i > v.max {
 		return fmt.Errorf("%w %d and %d", errNotBetween, v.min, v.max)
 	}
 	v.value = &i
@@ -206,7 +206,7 @@ func (v *Port) set(s string) error {
 	i, err := strconv.Atoi(s)
 	if err != nil {
 		return err
-	} else if !(0 < i && i <= math.MaxUint16) {
+	} else if 0 >= i || i > math.MaxUint16 {
 		return fmt.Errorf("%w 1 and %d", errNotBetween, math.MaxUint16)
 	}
 	v.value = &i
@@ -222,7 +222,7 @@ func (v *ListenPort) set(s string) error {
 	i, err := strconv.Atoi(s)
 	if err != nil {
 		return err
-	} else if !(0 <= i && i <= math.MaxUint16) {
+	} else if 0 > i || i > math.MaxUint16 {
 		return fmt.Errorf("%w 0 and %d", errNotBetween, math.MaxUint16)
 	}
 	v.value = &i

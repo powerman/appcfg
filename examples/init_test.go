@@ -1,8 +1,9 @@
+// Package main provides test utilities for the main example.
 package main
 
 import (
 	"flag"
-	"io/ioutil"
+	"io"
 	"os"
 	"strings"
 	"testing"
@@ -14,10 +15,10 @@ func TestMain(m *testing.M) { check.TestMain(m) }
 
 var origExtCfg = extCfg
 
-func testGetCfg(flags ...string) (interface{}, error) {
+func testGetCfg(flags ...string) (any, error) {
 	extCfg = origExtCfg
 	fs := flag.NewFlagSet("", flag.ContinueOnError)
-	fs.SetOutput(ioutil.Discard)
+	fs.SetOutput(io.Discard)
 
 	err := initExtCfg(fs)
 	if err != nil {

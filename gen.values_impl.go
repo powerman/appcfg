@@ -27,7 +27,7 @@ func (v *Bool) Set(s string) error {
 }
 
 // Get implements flag.Getter interface.
-func (v *Bool) Get() interface{} {
+func (v *Bool) Get() any {
 	if v.value == nil {
 		return nil
 	}
@@ -60,7 +60,7 @@ func (v *String) Set(s string) error {
 }
 
 // Get implements flag.Getter interface.
-func (v *String) Get() interface{} {
+func (v *String) Get() any {
 	if v.value == nil {
 		return nil
 	}
@@ -93,7 +93,7 @@ func (v *NotEmptyString) Set(s string) error {
 }
 
 // Get implements flag.Getter interface.
-func (v *NotEmptyString) Get() interface{} {
+func (v *NotEmptyString) Get() any {
 	if v.value == nil {
 		return nil
 	}
@@ -126,7 +126,7 @@ func (v *OneOfString) Set(s string) error {
 }
 
 // Get implements flag.Getter interface.
-func (v *OneOfString) Get() interface{} {
+func (v *OneOfString) Get() any {
 	if v.value == nil {
 		return nil
 	}
@@ -159,7 +159,7 @@ func (v *Endpoint) Set(s string) error {
 }
 
 // Get implements flag.Getter interface.
-func (v *Endpoint) Get() interface{} {
+func (v *Endpoint) Get() any {
 	if v.value == nil {
 		return nil
 	}
@@ -192,7 +192,7 @@ func (v *Int) Set(s string) error {
 }
 
 // Get implements flag.Getter interface.
-func (v *Int) Get() interface{} {
+func (v *Int) Get() any {
 	if v.value == nil {
 		return nil
 	}
@@ -225,7 +225,7 @@ func (v *Int64) Set(s string) error {
 }
 
 // Get implements flag.Getter interface.
-func (v *Int64) Get() interface{} {
+func (v *Int64) Get() any {
 	if v.value == nil {
 		return nil
 	}
@@ -258,7 +258,7 @@ func (v *Uint) Set(s string) error {
 }
 
 // Get implements flag.Getter interface.
-func (v *Uint) Get() interface{} {
+func (v *Uint) Get() any {
 	if v.value == nil {
 		return nil
 	}
@@ -291,7 +291,7 @@ func (v *Uint64) Set(s string) error {
 }
 
 // Get implements flag.Getter interface.
-func (v *Uint64) Get() interface{} {
+func (v *Uint64) Get() any {
 	if v.value == nil {
 		return nil
 	}
@@ -324,7 +324,7 @@ func (v *Float64) Set(s string) error {
 }
 
 // Get implements flag.Getter interface.
-func (v *Float64) Get() interface{} {
+func (v *Float64) Get() any {
 	if v.value == nil {
 		return nil
 	}
@@ -357,7 +357,7 @@ func (v *IntBetween) Set(s string) error {
 }
 
 // Get implements flag.Getter interface.
-func (v *IntBetween) Get() interface{} {
+func (v *IntBetween) Get() any {
 	if v.value == nil {
 		return nil
 	}
@@ -390,7 +390,7 @@ func (v *Port) Set(s string) error {
 }
 
 // Get implements flag.Getter interface.
-func (v *Port) Get() interface{} {
+func (v *Port) Get() any {
 	if v.value == nil {
 		return nil
 	}
@@ -423,7 +423,7 @@ func (v *ListenPort) Set(s string) error {
 }
 
 // Get implements flag.Getter interface.
-func (v *ListenPort) Get() interface{} {
+func (v *ListenPort) Get() any {
 	if v.value == nil {
 		return nil
 	}
@@ -456,7 +456,7 @@ func (v *IPNet) Set(s string) error {
 }
 
 // Get implements flag.Getter interface.
-func (v *IPNet) Get() interface{} {
+func (v *IPNet) Get() any {
 	if v.value == nil {
 		return nil
 	}
@@ -489,7 +489,7 @@ func (v *HostPort) Set(s string) error {
 }
 
 // Get implements flag.Getter interface.
-func (v *HostPort) Get() interface{} {
+func (v *HostPort) Get() any {
 	if v.value == nil {
 		return nil
 	}

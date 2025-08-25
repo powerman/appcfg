@@ -14,7 +14,7 @@ func (v *BoolSlice) String() string {
 	if v == nil || v.values == nil {
 		return ""
 	}
-	return fmt.Sprint(v.values) //nolint:gocritic // For genny.
+	return fmt.Sprint(v.values)
 }
 
 // Set implements flag.Value interface.
@@ -31,7 +31,7 @@ func (v *BoolSlice) Set(s string) error {
 }
 
 // Get implements flag.Getter interface.
-func (v *BoolSlice) Get() interface{} {
+func (v *BoolSlice) Get() any {
 	if v.values == nil {
 		return nil
 	}
@@ -52,7 +52,7 @@ func (v *StringArray) String() string {
 	if v == nil || v.values == nil {
 		return ""
 	}
-	return fmt.Sprint(v.values) //nolint:gocritic // For genny.
+	return fmt.Sprint(v.values)
 }
 
 // Set implements flag.Value interface.
@@ -69,7 +69,7 @@ func (v *StringArray) Set(s string) error {
 }
 
 // Get implements flag.Getter interface.
-func (v *StringArray) Get() interface{} {
+func (v *StringArray) Get() any {
 	if v.values == nil {
 		return nil
 	}
@@ -90,7 +90,7 @@ func (v *StringSlice) String() string {
 	if v == nil || v.values == nil {
 		return ""
 	}
-	return fmt.Sprint(v.values) //nolint:gocritic // For genny.
+	return fmt.Sprint(v.values)
 }
 
 // Set implements flag.Value interface.
@@ -107,7 +107,7 @@ func (v *StringSlice) Set(s string) error {
 }
 
 // Get implements flag.Getter interface.
-func (v *StringSlice) Get() interface{} {
+func (v *StringSlice) Get() any {
 	if v.values == nil {
 		return nil
 	}
@@ -128,7 +128,7 @@ func (v *NotEmptyStringArray) String() string {
 	if v == nil || v.values == nil {
 		return ""
 	}
-	return fmt.Sprint(v.values) //nolint:gocritic // For genny.
+	return fmt.Sprint(v.values)
 }
 
 // Set implements flag.Value interface.
@@ -145,7 +145,7 @@ func (v *NotEmptyStringArray) Set(s string) error {
 }
 
 // Get implements flag.Getter interface.
-func (v *NotEmptyStringArray) Get() interface{} {
+func (v *NotEmptyStringArray) Get() any {
 	if v.values == nil {
 		return nil
 	}
@@ -166,7 +166,7 @@ func (v *NotEmptyStringSlice) String() string {
 	if v == nil || v.values == nil {
 		return ""
 	}
-	return fmt.Sprint(v.values) //nolint:gocritic // For genny.
+	return fmt.Sprint(v.values)
 }
 
 // Set implements flag.Value interface.
@@ -183,7 +183,7 @@ func (v *NotEmptyStringSlice) Set(s string) error {
 }
 
 // Get implements flag.Getter interface.
-func (v *NotEmptyStringSlice) Get() interface{} {
+func (v *NotEmptyStringSlice) Get() any {
 	if v.values == nil {
 		return nil
 	}
@@ -204,7 +204,7 @@ func (v *OneOfStringSlice) String() string {
 	if v == nil || v.values == nil {
 		return ""
 	}
-	return fmt.Sprint(v.values) //nolint:gocritic // For genny.
+	return fmt.Sprint(v.values)
 }
 
 // Set implements flag.Value interface.
@@ -221,7 +221,7 @@ func (v *OneOfStringSlice) Set(s string) error {
 }
 
 // Get implements flag.Getter interface.
-func (v *OneOfStringSlice) Get() interface{} {
+func (v *OneOfStringSlice) Get() any {
 	if v.values == nil {
 		return nil
 	}
@@ -242,7 +242,7 @@ func (v *EndpointSlice) String() string {
 	if v == nil || v.values == nil {
 		return ""
 	}
-	return fmt.Sprint(v.values) //nolint:gocritic // For genny.
+	return fmt.Sprint(v.values)
 }
 
 // Set implements flag.Value interface.
@@ -259,7 +259,7 @@ func (v *EndpointSlice) Set(s string) error {
 }
 
 // Get implements flag.Getter interface.
-func (v *EndpointSlice) Get() interface{} {
+func (v *EndpointSlice) Get() any {
 	if v.values == nil {
 		return nil
 	}
@@ -280,7 +280,7 @@ func (v *IntSlice) String() string {
 	if v == nil || v.values == nil {
 		return ""
 	}
-	return fmt.Sprint(v.values) //nolint:gocritic // For genny.
+	return fmt.Sprint(v.values)
 }
 
 // Set implements flag.Value interface.
@@ -297,7 +297,7 @@ func (v *IntSlice) Set(s string) error {
 }
 
 // Get implements flag.Getter interface.
-func (v *IntSlice) Get() interface{} {
+func (v *IntSlice) Get() any {
 	if v.values == nil {
 		return nil
 	}
@@ -318,7 +318,7 @@ func (v *Int64Slice) String() string {
 	if v == nil || v.values == nil {
 		return ""
 	}
-	return fmt.Sprint(v.values) //nolint:gocritic // For genny.
+	return fmt.Sprint(v.values)
 }
 
 // Set implements flag.Value interface.
@@ -335,7 +335,7 @@ func (v *Int64Slice) Set(s string) error {
 }
 
 // Get implements flag.Getter interface.
-func (v *Int64Slice) Get() interface{} {
+func (v *Int64Slice) Get() any {
 	if v.values == nil {
 		return nil
 	}
@@ -356,7 +356,7 @@ func (v *UintSlice) String() string {
 	if v == nil || v.values == nil {
 		return ""
 	}
-	return fmt.Sprint(v.values) //nolint:gocritic // For genny.
+	return fmt.Sprint(v.values)
 }
 
 // Set implements flag.Value interface.
@@ -373,7 +373,7 @@ func (v *UintSlice) Set(s string) error {
 }
 
 // Get implements flag.Getter interface.
-func (v *UintSlice) Get() interface{} {
+func (v *UintSlice) Get() any {
 	if v.values == nil {
 		return nil
 	}
@@ -394,7 +394,7 @@ func (v *Uint64Slice) String() string {
 	if v == nil || v.values == nil {
 		return ""
 	}
-	return fmt.Sprint(v.values) //nolint:gocritic // For genny.
+	return fmt.Sprint(v.values)
 }
 
 // Set implements flag.Value interface.
@@ -411,7 +411,7 @@ func (v *Uint64Slice) Set(s string) error {
 }
 
 // Get implements flag.Getter interface.
-func (v *Uint64Slice) Get() interface{} {
+func (v *Uint64Slice) Get() any {
 	if v.values == nil {
 		return nil
 	}
@@ -432,7 +432,7 @@ func (v *Float64Slice) String() string {
 	if v == nil || v.values == nil {
 		return ""
 	}
-	return fmt.Sprint(v.values) //nolint:gocritic // For genny.
+	return fmt.Sprint(v.values)
 }
 
 // Set implements flag.Value interface.
@@ -449,7 +449,7 @@ func (v *Float64Slice) Set(s string) error {
 }
 
 // Get implements flag.Getter interface.
-func (v *Float64Slice) Get() interface{} {
+func (v *Float64Slice) Get() any {
 	if v.values == nil {
 		return nil
 	}
@@ -470,7 +470,7 @@ func (v *IntBetweenSlice) String() string {
 	if v == nil || v.values == nil {
 		return ""
 	}
-	return fmt.Sprint(v.values) //nolint:gocritic // For genny.
+	return fmt.Sprint(v.values)
 }
 
 // Set implements flag.Value interface.
@@ -487,7 +487,7 @@ func (v *IntBetweenSlice) Set(s string) error {
 }
 
 // Get implements flag.Getter interface.
-func (v *IntBetweenSlice) Get() interface{} {
+func (v *IntBetweenSlice) Get() any {
 	if v.values == nil {
 		return nil
 	}
@@ -508,7 +508,7 @@ func (v *PortSlice) String() string {
 	if v == nil || v.values == nil {
 		return ""
 	}
-	return fmt.Sprint(v.values) //nolint:gocritic // For genny.
+	return fmt.Sprint(v.values)
 }
 
 // Set implements flag.Value interface.
@@ -525,7 +525,7 @@ func (v *PortSlice) Set(s string) error {
 }
 
 // Get implements flag.Getter interface.
-func (v *PortSlice) Get() interface{} {
+func (v *PortSlice) Get() any {
 	if v.values == nil {
 		return nil
 	}
@@ -546,7 +546,7 @@ func (v *ListenPortSlice) String() string {
 	if v == nil || v.values == nil {
 		return ""
 	}
-	return fmt.Sprint(v.values) //nolint:gocritic // For genny.
+	return fmt.Sprint(v.values)
 }
 
 // Set implements flag.Value interface.
@@ -563,7 +563,7 @@ func (v *ListenPortSlice) Set(s string) error {
 }
 
 // Get implements flag.Getter interface.
-func (v *ListenPortSlice) Get() interface{} {
+func (v *ListenPortSlice) Get() any {
 	if v.values == nil {
 		return nil
 	}
@@ -584,7 +584,7 @@ func (v *IPNetSlice) String() string {
 	if v == nil || v.values == nil {
 		return ""
 	}
-	return fmt.Sprint(v.values) //nolint:gocritic // For genny.
+	return fmt.Sprint(v.values)
 }
 
 // Set implements flag.Value interface.
@@ -601,7 +601,7 @@ func (v *IPNetSlice) Set(s string) error {
 }
 
 // Get implements flag.Getter interface.
-func (v *IPNetSlice) Get() interface{} {
+func (v *IPNetSlice) Get() any {
 	if v.values == nil {
 		return nil
 	}
@@ -622,7 +622,7 @@ func (v *HostPortSlice) String() string {
 	if v == nil || v.values == nil {
 		return ""
 	}
-	return fmt.Sprint(v.values) //nolint:gocritic // For genny.
+	return fmt.Sprint(v.values)
 }
 
 // Set implements flag.Value interface.
@@ -639,7 +639,7 @@ func (v *HostPortSlice) Set(s string) error {
 }
 
 // Get implements flag.Getter interface.
-func (v *HostPortSlice) Get() interface{} {
+func (v *HostPortSlice) Get() any {
 	if v.values == nil {
 		return nil
 	}

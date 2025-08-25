@@ -22,18 +22,21 @@ func Test(tt *testing.T) {
 	t.Run("required", func(tt *testing.T) {
 		t := check.T(tt)
 		errMatch(t, "", `^Retries .* required`)
-		os.Setenv("EXAMPLE_RETRIES", "  1  ")
+		t.Setenv("EXAMPLE_RETRIES", "  1  ")
 		errMatch(t, "", `^Host .* required`)
-		os.Setenv("EXAMPLE_HOST", " example.com")
 	})
 	t.Run("default", func(tt *testing.T) {
 		t := check.T(tt)
+		t.Setenv("EXAMPLE_RETRIES", "  1  ")
+		t.Setenv("EXAMPLE_HOST", " example.com")
 		cfg, err := testGetCfg()
 		t.Nil(err)
 		t.DeepEqual(cfg, want)
 	})
 	t.Run("constraint", func(tt *testing.T) {
 		t := check.T(tt)
+		t.Setenv("EXAMPLE_RETRIES", "  1  ")
+		t.Setenv("EXAMPLE_HOST", " example.com")
 		errMatchEnv(t, "EXAMPLE_HOST", "", `^Host .* empty`)
 		errMatchEnv(t, "EXAMPLE_PORT", "0", `^Port .* between`)
 		errMatchEnv(t, "EXAMPLE_BIND_PORTS", "1,-1,2", `^BindPorts .* between`)
@@ -44,10 +47,10 @@ func Test(tt *testing.T) {
 	})
 	t.Run("env", func(tt *testing.T) {
 		t := check.T(tt)
-		os.Setenv("EXAMPLE_HOST", "example2.com")
-		os.Setenv("EXAMPLE_PORT", "2443")
-		os.Setenv("EXAMPLE_BIND_PORTS", "2080,2443")
-		os.Setenv("EXAMPLE_RETRIES", "2")
+		t.Setenv("EXAMPLE_HOST", "example2.com")
+		t.Setenv("EXAMPLE_PORT", "2443")
+		t.Setenv("EXAMPLE_BIND_PORTS", "2080,2443")
+		t.Setenv("EXAMPLE_RETRIES", "2")
 		cfg, err := testGetCfg()
 		t.Nil(err)
 		want.Host = "example2.com"
@@ -58,6 +61,10 @@ func Test(tt *testing.T) {
 	})
 	t.Run("flag", func(tt *testing.T) {
 		t := check.T(tt)
+		t.Setenv("EXAMPLE_HOST", "example2.com")
+		t.Setenv("EXAMPLE_PORT", "2443")
+		t.Setenv("EXAMPLE_BIND_PORTS", "2080,2443")
+		t.Setenv("EXAMPLE_RETRIES", "2")
 		cfg, err := testGetCfg(
 			"-host=example3.com",
 			"-port=3443",

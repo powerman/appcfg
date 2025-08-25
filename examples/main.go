@@ -8,6 +8,8 @@ import (
 	"github.com/powerman/appcfg"
 )
 
+const maxRetries = 3
+
 // Intermediate config, used to gather and validate values from different
 // external sources (environment variables, flags, etc.).
 var extCfg = struct { // Type defines constraint types and providers for each exported field.
@@ -20,8 +22,8 @@ var extCfg = struct { // Type defines constraint types and providers for each ex
 }{ // Values may define defaults for some fields and must setup some types.
 	Port:      appcfg.MustPort("443"), // Set default.
 	BindPorts: appcfg.MustListenPortSlice("80", "443"),
-	Timeout:   appcfg.MustDuration("30s"), // Set default.
-	Retries:   appcfg.NewIntBetween(1, 3), // Configure value constraints, no default.
+	Timeout:   appcfg.MustDuration("30s"),          // Set default.
+	Retries:   appcfg.NewIntBetween(1, maxRetries), // Configure value constraints, no default.
 }
 
 // initExtCfg should be called before calling fs.Parse() - it'll gather

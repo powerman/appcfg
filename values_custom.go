@@ -86,13 +86,13 @@ func (v *Float64) Value(err *error) (val float64) { //nolint:gocritic // ptrToRe
 }
 
 // NewIntBetween returns IntBetween without value set.
-func NewIntBetween(min, max int) IntBetween {
-	return IntBetween{min: min, max: max}
+func NewIntBetween(minVal, maxVal int) IntBetween {
+	return IntBetween{min: minVal, max: maxVal}
 }
 
 // MustIntBetween returns IntBetween initialized with given value or panics.
-func MustIntBetween(s string, min, max int) IntBetween {
-	v := NewIntBetween(min, max)
+func MustIntBetween(s string, minVal, maxVal int) IntBetween {
+	v := NewIntBetween(minVal, maxVal)
 	err := v.Set(s)
 	if err != nil {
 		panic(err)

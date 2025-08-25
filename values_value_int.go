@@ -1,5 +1,4 @@
-//go:generate -command GENNY sh -c "$(git rev-parse --show-toplevel)/.buildcache/bin/$DOLLAR{DOLLAR}0 \"$DOLLAR{DOLLAR}@\"" genny
-//go:generate GENNY -in=$GOFILE -out=gen.$GOFILE gen "Port=Int,IntBetween,ListenPort"
+//go:generate mise exec -- genny -in=$GOFILE -out=gen.$GOFILE gen "Port=Int,IntBetween,ListenPort"
 //go:generate sed -i -e "\\,^//go:generate,d" gen.$GOFILE
 
 package appcfg

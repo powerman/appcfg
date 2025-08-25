@@ -92,16 +92,16 @@ func (v *Float64Slice) Value(err *error) (val []float64) { //nolint:gocritic // 
 }
 
 // NewIntBetweenSlice returns IntBetweenSlice without value set.
-func NewIntBetweenSlice(min, max int) IntBetweenSlice {
-	return IntBetweenSlice{min: min, max: max}
+func NewIntBetweenSlice(minVal, maxVal int) IntBetweenSlice {
+	return IntBetweenSlice{min: minVal, max: maxVal}
 }
 
 // MustIntBetweenSlice returns IntBetweenSlice initialized with given value or panics.
-func MustIntBetweenSlice(min, max int, ss ...string) IntBetweenSlice {
+func MustIntBetweenSlice(minVal, maxVal int, ss ...string) IntBetweenSlice {
 	if len(ss) == 0 {
 		panic("require at least 1 arg")
 	}
-	v := NewIntBetweenSlice(min, max)
+	v := NewIntBetweenSlice(minVal, maxVal)
 	for _, s := range ss {
 		err := v.Set(s)
 		if err != nil {
@@ -122,6 +122,7 @@ func (v *IPNetSlice) Value(err *error) (val []*net.IPNet) { //nolint:gocritic //
 	return v.values
 }
 
+// HostPortTuple represents a host and port pair.
 type HostPortTuple struct {
 	Host string
 	Port int

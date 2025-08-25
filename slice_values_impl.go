@@ -1,5 +1,4 @@
-//go:generate -command GENNY sh -c "$(git rev-parse --show-toplevel)/.buildcache/bin/$DOLLAR{DOLLAR}0 \"$DOLLAR{DOLLAR}@\"" genny
-//go:generate GENNY -in=$GOFILE -out=gen.$GOFILE gen "DurationSlice=BoolSlice,StringArray,StringSlice,NotEmptyStringArray,NotEmptyStringSlice,OneOfStringSlice,EndpointSlice,IntSlice,Int64Slice,UintSlice,Uint64Slice,Float64Slice,IntBetweenSlice,PortSlice,ListenPortSlice,IPNetSlice,HostPortSlice"
+//go:generate mise exec -- genny -in=$GOFILE -out=gen.$GOFILE gen "DurationSlice=BoolSlice,StringArray,StringSlice,NotEmptyStringArray,NotEmptyStringSlice,OneOfStringSlice,EndpointSlice,IntSlice,Int64Slice,UintSlice,Uint64Slice,Float64Slice,IntBetweenSlice,PortSlice,ListenPortSlice,IPNetSlice,HostPortSlice"
 //go:generate sed -i -e "\\,^//go:generate,d" gen.$GOFILE
 
 package appcfg
@@ -15,7 +14,7 @@ func (v *DurationSlice) String() string {
 	if v == nil || v.values == nil {
 		return ""
 	}
-	return fmt.Sprint(v.values) //nolint:gocritic // For genny.
+	return fmt.Sprint(v.values)
 }
 
 // Set implements flag.Value interface.
@@ -32,7 +31,7 @@ func (v *DurationSlice) Set(s string) error {
 }
 
 // Get implements flag.Getter interface.
-func (v *DurationSlice) Get() interface{} {
+func (v *DurationSlice) Get() any {
 	if v.values == nil {
 		return nil
 	}
