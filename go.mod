@@ -5,7 +5,7 @@ go 1.24.6
 require (
 	github.com/powerman/check v1.9.0
 	github.com/smartystreets/goconvey v1.8.1
-	github.com/spf13/pflag v1.0.7
+	github.com/spf13/pflag v1.0.10
 )
 
 require (
