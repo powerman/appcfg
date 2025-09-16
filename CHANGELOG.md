@@ -5,6 +5,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.9.2] - 2025-09-16
+
+### 📦️ Dependencies
+
+- **(deps)** Bump github.com/spf13/pflag from 1.0.7 to 1.0.9 by @dependabot[bot] in [#79]
+
+[0.9.2]: https://github.com/powerman/appcfg/compare/v0.9.1..v0.9.2
+[#79]: https://github.com/powerman/appcfg/pull/79
+
 ## [0.9.1] - 2025-08-25
 
 [0.9.1]: https://github.com/powerman/appcfg/compare/v0.9.0..v0.9.1
