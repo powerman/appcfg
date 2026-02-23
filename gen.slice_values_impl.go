@@ -9,7 +9,7 @@ import "fmt"
 
 var _ Value = &BoolSlice{}
 
-// String implements flag.Value interface.
+// String implements [flag.Value] interface.
 func (v *BoolSlice) String() string {
 	if v == nil || v.values == nil {
 		return ""
@@ -17,7 +17,7 @@ func (v *BoolSlice) String() string {
 	return fmt.Sprint(v.values)
 }
 
-// Set implements flag.Value interface.
+// Set implements [flag.Value] interface.
 func (v *BoolSlice) Set(s string) error {
 	if v.completed {
 		v.completed = false
@@ -30,7 +30,7 @@ func (v *BoolSlice) Set(s string) error {
 	return err
 }
 
-// Get implements flag.Getter interface.
+// Get implements [flag.Getter] interface.
 func (v *BoolSlice) Get() any {
 	if v.values == nil {
 		return nil
@@ -39,7 +39,7 @@ func (v *BoolSlice) Get() any {
 	return v.values
 }
 
-// Type implements pflag.Value interface.
+// Type implements [github.com/spf13/pflag.Value] interface.
 func (*BoolSlice) Type() string {
 	return "BoolSlice"
 }
@@ -47,7 +47,7 @@ func (*BoolSlice) Type() string {
 
 var _ Value = &StringArray{}
 
-// String implements flag.Value interface.
+// String implements [flag.Value] interface.
 func (v *StringArray) String() string {
 	if v == nil || v.values == nil {
 		return ""
@@ -55,7 +55,7 @@ func (v *StringArray) String() string {
 	return fmt.Sprint(v.values)
 }
 
-// Set implements flag.Value interface.
+// Set implements [flag.Value] interface.
 func (v *StringArray) Set(s string) error {
 	if v.completed {
 		v.completed = false
@@ -68,7 +68,7 @@ func (v *StringArray) Set(s string) error {
 	return err
 }
 
-// Get implements flag.Getter interface.
+// Get implements [flag.Getter] interface.
 func (v *StringArray) Get() any {
 	if v.values == nil {
 		return nil
@@ -77,7 +77,7 @@ func (v *StringArray) Get() any {
 	return v.values
 }
 
-// Type implements pflag.Value interface.
+// Type implements [github.com/spf13/pflag.Value] interface.
 func (*StringArray) Type() string {
 	return "StringArray"
 }
@@ -85,7 +85,7 @@ func (*StringArray) Type() string {
 
 var _ Value = &StringSlice{}
 
-// String implements flag.Value interface.
+// String implements [flag.Value] interface.
 func (v *StringSlice) String() string {
 	if v == nil || v.values == nil {
 		return ""
@@ -93,7 +93,7 @@ func (v *StringSlice) String() string {
 	return fmt.Sprint(v.values)
 }
 
-// Set implements flag.Value interface.
+// Set implements [flag.Value] interface.
 func (v *StringSlice) Set(s string) error {
 	if v.completed {
 		v.completed = false
@@ -106,7 +106,7 @@ func (v *StringSlice) Set(s string) error {
 	return err
 }
 
-// Get implements flag.Getter interface.
+// Get implements [flag.Getter] interface.
 func (v *StringSlice) Get() any {
 	if v.values == nil {
 		return nil
@@ -115,7 +115,7 @@ func (v *StringSlice) Get() any {
 	return v.values
 }
 
-// Type implements pflag.Value interface.
+// Type implements [github.com/spf13/pflag.Value] interface.
 func (*StringSlice) Type() string {
 	return "StringSlice"
 }
@@ -123,7 +123,7 @@ func (*StringSlice) Type() string {
 
 var _ Value = &NotEmptyStringArray{}
 
-// String implements flag.Value interface.
+// String implements [flag.Value] interface.
 func (v *NotEmptyStringArray) String() string {
 	if v == nil || v.values == nil {
 		return ""
@@ -131,7 +131,7 @@ func (v *NotEmptyStringArray) String() string {
 	return fmt.Sprint(v.values)
 }
 
-// Set implements flag.Value interface.
+// Set implements [flag.Value] interface.
 func (v *NotEmptyStringArray) Set(s string) error {
 	if v.completed {
 		v.completed = false
@@ -144,7 +144,7 @@ func (v *NotEmptyStringArray) Set(s string) error {
 	return err
 }
 
-// Get implements flag.Getter interface.
+// Get implements [flag.Getter] interface.
 func (v *NotEmptyStringArray) Get() any {
 	if v.values == nil {
 		return nil
@@ -153,7 +153,7 @@ func (v *NotEmptyStringArray) Get() any {
 	return v.values
 }
 
-// Type implements pflag.Value interface.
+// Type implements [github.com/spf13/pflag.Value] interface.
 func (*NotEmptyStringArray) Type() string {
 	return "NotEmptyStringArray"
 }
@@ -161,7 +161,7 @@ func (*NotEmptyStringArray) Type() string {
 
 var _ Value = &NotEmptyStringSlice{}
 
-// String implements flag.Value interface.
+// String implements [flag.Value] interface.
 func (v *NotEmptyStringSlice) String() string {
 	if v == nil || v.values == nil {
 		return ""
@@ -169,7 +169,7 @@ func (v *NotEmptyStringSlice) String() string {
 	return fmt.Sprint(v.values)
 }
 
-// Set implements flag.Value interface.
+// Set implements [flag.Value] interface.
 func (v *NotEmptyStringSlice) Set(s string) error {
 	if v.completed {
 		v.completed = false
@@ -182,7 +182,7 @@ func (v *NotEmptyStringSlice) Set(s string) error {
 	return err
 }
 
-// Get implements flag.Getter interface.
+// Get implements [flag.Getter] interface.
 func (v *NotEmptyStringSlice) Get() any {
 	if v.values == nil {
 		return nil
@@ -191,7 +191,7 @@ func (v *NotEmptyStringSlice) Get() any {
 	return v.values
 }
 
-// Type implements pflag.Value interface.
+// Type implements [github.com/spf13/pflag.Value] interface.
 func (*NotEmptyStringSlice) Type() string {
 	return "NotEmptyStringSlice"
 }
@@ -199,7 +199,7 @@ func (*NotEmptyStringSlice) Type() string {
 
 var _ Value = &OneOfStringSlice{}
 
-// String implements flag.Value interface.
+// String implements [flag.Value] interface.
 func (v *OneOfStringSlice) String() string {
 	if v == nil || v.values == nil {
 		return ""
@@ -207,7 +207,7 @@ func (v *OneOfStringSlice) String() string {
 	return fmt.Sprint(v.values)
 }
 
-// Set implements flag.Value interface.
+// Set implements [flag.Value] interface.
 func (v *OneOfStringSlice) Set(s string) error {
 	if v.completed {
 		v.completed = false
@@ -220,7 +220,7 @@ func (v *OneOfStringSlice) Set(s string) error {
 	return err
 }
 
-// Get implements flag.Getter interface.
+// Get implements [flag.Getter] interface.
 func (v *OneOfStringSlice) Get() any {
 	if v.values == nil {
 		return nil
@@ -229,7 +229,7 @@ func (v *OneOfStringSlice) Get() any {
 	return v.values
 }
 
-// Type implements pflag.Value interface.
+// Type implements [github.com/spf13/pflag.Value] interface.
 func (*OneOfStringSlice) Type() string {
 	return "OneOfStringSlice"
 }
@@ -237,7 +237,7 @@ func (*OneOfStringSlice) Type() string {
 
 var _ Value = &EndpointSlice{}
 
-// String implements flag.Value interface.
+// String implements [flag.Value] interface.
 func (v *EndpointSlice) String() string {
 	if v == nil || v.values == nil {
 		return ""
@@ -245,7 +245,7 @@ func (v *EndpointSlice) String() string {
 	return fmt.Sprint(v.values)
 }
 
-// Set implements flag.Value interface.
+// Set implements [flag.Value] interface.
 func (v *EndpointSlice) Set(s string) error {
 	if v.completed {
 		v.completed = false
@@ -258,7 +258,7 @@ func (v *EndpointSlice) Set(s string) error {
 	return err
 }
 
-// Get implements flag.Getter interface.
+// Get implements [flag.Getter] interface.
 func (v *EndpointSlice) Get() any {
 	if v.values == nil {
 		return nil
@@ -267,7 +267,7 @@ func (v *EndpointSlice) Get() any {
 	return v.values
 }
 
-// Type implements pflag.Value interface.
+// Type implements [github.com/spf13/pflag.Value] interface.
 func (*EndpointSlice) Type() string {
 	return "EndpointSlice"
 }
@@ -275,7 +275,7 @@ func (*EndpointSlice) Type() string {
 
 var _ Value = &IntSlice{}
 
-// String implements flag.Value interface.
+// String implements [flag.Value] interface.
 func (v *IntSlice) String() string {
 	if v == nil || v.values == nil {
 		return ""
@@ -283,7 +283,7 @@ func (v *IntSlice) String() string {
 	return fmt.Sprint(v.values)
 }
 
-// Set implements flag.Value interface.
+// Set implements [flag.Value] interface.
 func (v *IntSlice) Set(s string) error {
 	if v.completed {
 		v.completed = false
@@ -296,7 +296,7 @@ func (v *IntSlice) Set(s string) error {
 	return err
 }
 
-// Get implements flag.Getter interface.
+// Get implements [flag.Getter] interface.
 func (v *IntSlice) Get() any {
 	if v.values == nil {
 		return nil
@@ -305,7 +305,7 @@ func (v *IntSlice) Get() any {
 	return v.values
 }
 
-// Type implements pflag.Value interface.
+// Type implements [github.com/spf13/pflag.Value] interface.
 func (*IntSlice) Type() string {
 	return "IntSlice"
 }
@@ -313,7 +313,7 @@ func (*IntSlice) Type() string {
 
 var _ Value = &Int64Slice{}
 
-// String implements flag.Value interface.
+// String implements [flag.Value] interface.
 func (v *Int64Slice) String() string {
 	if v == nil || v.values == nil {
 		return ""
@@ -321,7 +321,7 @@ func (v *Int64Slice) String() string {
 	return fmt.Sprint(v.values)
 }
 
-// Set implements flag.Value interface.
+// Set implements [flag.Value] interface.
 func (v *Int64Slice) Set(s string) error {
 	if v.completed {
 		v.completed = false
@@ -334,7 +334,7 @@ func (v *Int64Slice) Set(s string) error {
 	return err
 }
 
-// Get implements flag.Getter interface.
+// Get implements [flag.Getter] interface.
 func (v *Int64Slice) Get() any {
 	if v.values == nil {
 		return nil
@@ -343,7 +343,7 @@ func (v *Int64Slice) Get() any {
 	return v.values
 }
 
-// Type implements pflag.Value interface.
+// Type implements [github.com/spf13/pflag.Value] interface.
 func (*Int64Slice) Type() string {
 	return "Int64Slice"
 }
@@ -351,7 +351,7 @@ func (*Int64Slice) Type() string {
 
 var _ Value = &UintSlice{}
 
-// String implements flag.Value interface.
+// String implements [flag.Value] interface.
 func (v *UintSlice) String() string {
 	if v == nil || v.values == nil {
 		return ""
@@ -359,7 +359,7 @@ func (v *UintSlice) String() string {
 	return fmt.Sprint(v.values)
 }
 
-// Set implements flag.Value interface.
+// Set implements [flag.Value] interface.
 func (v *UintSlice) Set(s string) error {
 	if v.completed {
 		v.completed = false
@@ -372,7 +372,7 @@ func (v *UintSlice) Set(s string) error {
 	return err
 }
 
-// Get implements flag.Getter interface.
+// Get implements [flag.Getter] interface.
 func (v *UintSlice) Get() any {
 	if v.values == nil {
 		return nil
@@ -381,7 +381,7 @@ func (v *UintSlice) Get() any {
 	return v.values
 }
 
-// Type implements pflag.Value interface.
+// Type implements [github.com/spf13/pflag.Value] interface.
 func (*UintSlice) Type() string {
 	return "UintSlice"
 }
@@ -389,7 +389,7 @@ func (*UintSlice) Type() string {
 
 var _ Value = &Uint64Slice{}
 
-// String implements flag.Value interface.
+// String implements [flag.Value] interface.
 func (v *Uint64Slice) String() string {
 	if v == nil || v.values == nil {
 		return ""
@@ -397,7 +397,7 @@ func (v *Uint64Slice) String() string {
 	return fmt.Sprint(v.values)
 }
 
-// Set implements flag.Value interface.
+// Set implements [flag.Value] interface.
 func (v *Uint64Slice) Set(s string) error {
 	if v.completed {
 		v.completed = false
@@ -410,7 +410,7 @@ func (v *Uint64Slice) Set(s string) error {
 	return err
 }
 
-// Get implements flag.Getter interface.
+// Get implements [flag.Getter] interface.
 func (v *Uint64Slice) Get() any {
 	if v.values == nil {
 		return nil
@@ -419,7 +419,7 @@ func (v *Uint64Slice) Get() any {
 	return v.values
 }
 
-// Type implements pflag.Value interface.
+// Type implements [github.com/spf13/pflag.Value] interface.
 func (*Uint64Slice) Type() string {
 	return "Uint64Slice"
 }
@@ -427,7 +427,7 @@ func (*Uint64Slice) Type() string {
 
 var _ Value = &Float64Slice{}
 
-// String implements flag.Value interface.
+// String implements [flag.Value] interface.
 func (v *Float64Slice) String() string {
 	if v == nil || v.values == nil {
 		return ""
@@ -435,7 +435,7 @@ func (v *Float64Slice) String() string {
 	return fmt.Sprint(v.values)
 }
 
-// Set implements flag.Value interface.
+// Set implements [flag.Value] interface.
 func (v *Float64Slice) Set(s string) error {
 	if v.completed {
 		v.completed = false
@@ -448,7 +448,7 @@ func (v *Float64Slice) Set(s string) error {
 	return err
 }
 
-// Get implements flag.Getter interface.
+// Get implements [flag.Getter] interface.
 func (v *Float64Slice) Get() any {
 	if v.values == nil {
 		return nil
@@ -457,7 +457,7 @@ func (v *Float64Slice) Get() any {
 	return v.values
 }
 
-// Type implements pflag.Value interface.
+// Type implements [github.com/spf13/pflag.Value] interface.
 func (*Float64Slice) Type() string {
 	return "Float64Slice"
 }
@@ -465,7 +465,7 @@ func (*Float64Slice) Type() string {
 
 var _ Value = &IntBetweenSlice{}
 
-// String implements flag.Value interface.
+// String implements [flag.Value] interface.
 func (v *IntBetweenSlice) String() string {
 	if v == nil || v.values == nil {
 		return ""
@@ -473,7 +473,7 @@ func (v *IntBetweenSlice) String() string {
 	return fmt.Sprint(v.values)
 }
 
-// Set implements flag.Value interface.
+// Set implements [flag.Value] interface.
 func (v *IntBetweenSlice) Set(s string) error {
 	if v.completed {
 		v.completed = false
@@ -486,7 +486,7 @@ func (v *IntBetweenSlice) Set(s string) error {
 	return err
 }
 
-// Get implements flag.Getter interface.
+// Get implements [flag.Getter] interface.
 func (v *IntBetweenSlice) Get() any {
 	if v.values == nil {
 		return nil
@@ -495,7 +495,7 @@ func (v *IntBetweenSlice) Get() any {
 	return v.values
 }
 
-// Type implements pflag.Value interface.
+// Type implements [github.com/spf13/pflag.Value] interface.
 func (*IntBetweenSlice) Type() string {
 	return "IntBetweenSlice"
 }
@@ -503,7 +503,7 @@ func (*IntBetweenSlice) Type() string {
 
 var _ Value = &PortSlice{}
 
-// String implements flag.Value interface.
+// String implements [flag.Value] interface.
 func (v *PortSlice) String() string {
 	if v == nil || v.values == nil {
 		return ""
@@ -511,7 +511,7 @@ func (v *PortSlice) String() string {
 	return fmt.Sprint(v.values)
 }
 
-// Set implements flag.Value interface.
+// Set implements [flag.Value] interface.
 func (v *PortSlice) Set(s string) error {
 	if v.completed {
 		v.completed = false
@@ -524,7 +524,7 @@ func (v *PortSlice) Set(s string) error {
 	return err
 }
 
-// Get implements flag.Getter interface.
+// Get implements [flag.Getter] interface.
 func (v *PortSlice) Get() any {
 	if v.values == nil {
 		return nil
@@ -533,7 +533,7 @@ func (v *PortSlice) Get() any {
 	return v.values
 }
 
-// Type implements pflag.Value interface.
+// Type implements [github.com/spf13/pflag.Value] interface.
 func (*PortSlice) Type() string {
 	return "PortSlice"
 }
@@ -541,7 +541,7 @@ func (*PortSlice) Type() string {
 
 var _ Value = &ListenPortSlice{}
 
-// String implements flag.Value interface.
+// String implements [flag.Value] interface.
 func (v *ListenPortSlice) String() string {
 	if v == nil || v.values == nil {
 		return ""
@@ -549,7 +549,7 @@ func (v *ListenPortSlice) String() string {
 	return fmt.Sprint(v.values)
 }
 
-// Set implements flag.Value interface.
+// Set implements [flag.Value] interface.
 func (v *ListenPortSlice) Set(s string) error {
 	if v.completed {
 		v.completed = false
@@ -562,7 +562,7 @@ func (v *ListenPortSlice) Set(s string) error {
 	return err
 }
 
-// Get implements flag.Getter interface.
+// Get implements [flag.Getter] interface.
 func (v *ListenPortSlice) Get() any {
 	if v.values == nil {
 		return nil
@@ -571,7 +571,7 @@ func (v *ListenPortSlice) Get() any {
 	return v.values
 }
 
-// Type implements pflag.Value interface.
+// Type implements [github.com/spf13/pflag.Value] interface.
 func (*ListenPortSlice) Type() string {
 	return "ListenPortSlice"
 }
@@ -579,7 +579,7 @@ func (*ListenPortSlice) Type() string {
 
 var _ Value = &IPNetSlice{}
 
-// String implements flag.Value interface.
+// String implements [flag.Value] interface.
 func (v *IPNetSlice) String() string {
 	if v == nil || v.values == nil {
 		return ""
@@ -587,7 +587,7 @@ func (v *IPNetSlice) String() string {
 	return fmt.Sprint(v.values)
 }
 
-// Set implements flag.Value interface.
+// Set implements [flag.Value] interface.
 func (v *IPNetSlice) Set(s string) error {
 	if v.completed {
 		v.completed = false
@@ -600,7 +600,7 @@ func (v *IPNetSlice) Set(s string) error {
 	return err
 }
 
-// Get implements flag.Getter interface.
+// Get implements [flag.Getter] interface.
 func (v *IPNetSlice) Get() any {
 	if v.values == nil {
 		return nil
@@ -609,7 +609,7 @@ func (v *IPNetSlice) Get() any {
 	return v.values
 }
 
-// Type implements pflag.Value interface.
+// Type implements [github.com/spf13/pflag.Value] interface.
 func (*IPNetSlice) Type() string {
 	return "IPNetSlice"
 }
@@ -617,7 +617,7 @@ func (*IPNetSlice) Type() string {
 
 var _ Value = &HostPortSlice{}
 
-// String implements flag.Value interface.
+// String implements [flag.Value] interface.
 func (v *HostPortSlice) String() string {
 	if v == nil || v.values == nil {
 		return ""
@@ -625,7 +625,7 @@ func (v *HostPortSlice) String() string {
 	return fmt.Sprint(v.values)
 }
 
-// Set implements flag.Value interface.
+// Set implements [flag.Value] interface.
 func (v *HostPortSlice) Set(s string) error {
 	if v.completed {
 		v.completed = false
@@ -638,7 +638,7 @@ func (v *HostPortSlice) Set(s string) error {
 	return err
 }
 
-// Get implements flag.Getter interface.
+// Get implements [flag.Getter] interface.
 func (v *HostPortSlice) Get() any {
 	if v.values == nil {
 		return nil
@@ -647,7 +647,7 @@ func (v *HostPortSlice) Get() any {
 	return v.values
 }
 
-// Type implements pflag.Value interface.
+// Type implements [github.com/spf13/pflag.Value] interface.
 func (*HostPortSlice) Type() string {
 	return "HostPortSlice"
 }

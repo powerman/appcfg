@@ -9,7 +9,7 @@ import "fmt"
 
 var _ Value = &Bool{}
 
-// String implements flag.Value interface.
+// String implements [flag.Value] interface.
 func (v *Bool) String() string {
 	if v == nil || v.value == nil {
 		return ""
@@ -17,7 +17,7 @@ func (v *Bool) String() string {
 	return fmt.Sprint(*v.value) //nolint:gocritic // For genny.
 }
 
-// Set implements flag.Value interface.
+// Set implements [flag.Value] interface.
 func (v *Bool) Set(s string) error {
 	err := v.set(s)
 	if err != nil {
@@ -26,7 +26,7 @@ func (v *Bool) Set(s string) error {
 	return err
 }
 
-// Get implements flag.Getter interface.
+// Get implements [flag.Getter] interface.
 func (v *Bool) Get() any {
 	if v.value == nil {
 		return nil
@@ -34,7 +34,7 @@ func (v *Bool) Get() any {
 	return *v.value
 }
 
-// Type implements pflag.Value interface.
+// Type implements [github.com/spf13/pflag.Value] interface.
 func (*Bool) Type() string {
 	return "Bool"
 }
@@ -42,7 +42,7 @@ func (*Bool) Type() string {
 
 var _ Value = &String{}
 
-// String implements flag.Value interface.
+// String implements [flag.Value] interface.
 func (v *String) String() string {
 	if v == nil || v.value == nil {
 		return ""
@@ -50,7 +50,7 @@ func (v *String) String() string {
 	return fmt.Sprint(*v.value) //nolint:gocritic // For genny.
 }
 
-// Set implements flag.Value interface.
+// Set implements [flag.Value] interface.
 func (v *String) Set(s string) error {
 	err := v.set(s)
 	if err != nil {
@@ -59,7 +59,7 @@ func (v *String) Set(s string) error {
 	return err
 }
 
-// Get implements flag.Getter interface.
+// Get implements [flag.Getter] interface.
 func (v *String) Get() any {
 	if v.value == nil {
 		return nil
@@ -67,7 +67,7 @@ func (v *String) Get() any {
 	return *v.value
 }
 
-// Type implements pflag.Value interface.
+// Type implements [github.com/spf13/pflag.Value] interface.
 func (*String) Type() string {
 	return "String"
 }
@@ -75,7 +75,7 @@ func (*String) Type() string {
 
 var _ Value = &NotEmptyString{}
 
-// String implements flag.Value interface.
+// String implements [flag.Value] interface.
 func (v *NotEmptyString) String() string {
 	if v == nil || v.value == nil {
 		return ""
@@ -83,7 +83,7 @@ func (v *NotEmptyString) String() string {
 	return fmt.Sprint(*v.value) //nolint:gocritic // For genny.
 }
 
-// Set implements flag.Value interface.
+// Set implements [flag.Value] interface.
 func (v *NotEmptyString) Set(s string) error {
 	err := v.set(s)
 	if err != nil {
@@ -92,7 +92,7 @@ func (v *NotEmptyString) Set(s string) error {
 	return err
 }
 
-// Get implements flag.Getter interface.
+// Get implements [flag.Getter] interface.
 func (v *NotEmptyString) Get() any {
 	if v.value == nil {
 		return nil
@@ -100,7 +100,7 @@ func (v *NotEmptyString) Get() any {
 	return *v.value
 }
 
-// Type implements pflag.Value interface.
+// Type implements [github.com/spf13/pflag.Value] interface.
 func (*NotEmptyString) Type() string {
 	return "NotEmptyString"
 }
@@ -108,7 +108,7 @@ func (*NotEmptyString) Type() string {
 
 var _ Value = &OneOfString{}
 
-// String implements flag.Value interface.
+// String implements [flag.Value] interface.
 func (v *OneOfString) String() string {
 	if v == nil || v.value == nil {
 		return ""
@@ -116,7 +116,7 @@ func (v *OneOfString) String() string {
 	return fmt.Sprint(*v.value) //nolint:gocritic // For genny.
 }
 
-// Set implements flag.Value interface.
+// Set implements [flag.Value] interface.
 func (v *OneOfString) Set(s string) error {
 	err := v.set(s)
 	if err != nil {
@@ -125,7 +125,7 @@ func (v *OneOfString) Set(s string) error {
 	return err
 }
 
-// Get implements flag.Getter interface.
+// Get implements [flag.Getter] interface.
 func (v *OneOfString) Get() any {
 	if v.value == nil {
 		return nil
@@ -133,7 +133,7 @@ func (v *OneOfString) Get() any {
 	return *v.value
 }
 
-// Type implements pflag.Value interface.
+// Type implements [github.com/spf13/pflag.Value] interface.
 func (*OneOfString) Type() string {
 	return "OneOfString"
 }
@@ -141,7 +141,7 @@ func (*OneOfString) Type() string {
 
 var _ Value = &Endpoint{}
 
-// String implements flag.Value interface.
+// String implements [flag.Value] interface.
 func (v *Endpoint) String() string {
 	if v == nil || v.value == nil {
 		return ""
@@ -149,7 +149,7 @@ func (v *Endpoint) String() string {
 	return fmt.Sprint(*v.value) //nolint:gocritic // For genny.
 }
 
-// Set implements flag.Value interface.
+// Set implements [flag.Value] interface.
 func (v *Endpoint) Set(s string) error {
 	err := v.set(s)
 	if err != nil {
@@ -158,7 +158,7 @@ func (v *Endpoint) Set(s string) error {
 	return err
 }
 
-// Get implements flag.Getter interface.
+// Get implements [flag.Getter] interface.
 func (v *Endpoint) Get() any {
 	if v.value == nil {
 		return nil
@@ -166,7 +166,7 @@ func (v *Endpoint) Get() any {
 	return *v.value
 }
 
-// Type implements pflag.Value interface.
+// Type implements [github.com/spf13/pflag.Value] interface.
 func (*Endpoint) Type() string {
 	return "Endpoint"
 }
@@ -174,7 +174,7 @@ func (*Endpoint) Type() string {
 
 var _ Value = &Int{}
 
-// String implements flag.Value interface.
+// String implements [flag.Value] interface.
 func (v *Int) String() string {
 	if v == nil || v.value == nil {
 		return ""
@@ -182,7 +182,7 @@ func (v *Int) String() string {
 	return fmt.Sprint(*v.value) //nolint:gocritic // For genny.
 }
 
-// Set implements flag.Value interface.
+// Set implements [flag.Value] interface.
 func (v *Int) Set(s string) error {
 	err := v.set(s)
 	if err != nil {
@@ -191,7 +191,7 @@ func (v *Int) Set(s string) error {
 	return err
 }
 
-// Get implements flag.Getter interface.
+// Get implements [flag.Getter] interface.
 func (v *Int) Get() any {
 	if v.value == nil {
 		return nil
@@ -199,7 +199,7 @@ func (v *Int) Get() any {
 	return *v.value
 }
 
-// Type implements pflag.Value interface.
+// Type implements [github.com/spf13/pflag.Value] interface.
 func (*Int) Type() string {
 	return "Int"
 }
@@ -207,7 +207,7 @@ func (*Int) Type() string {
 
 var _ Value = &Int64{}
 
-// String implements flag.Value interface.
+// String implements [flag.Value] interface.
 func (v *Int64) String() string {
 	if v == nil || v.value == nil {
 		return ""
@@ -215,7 +215,7 @@ func (v *Int64) String() string {
 	return fmt.Sprint(*v.value) //nolint:gocritic // For genny.
 }
 
-// Set implements flag.Value interface.
+// Set implements [flag.Value] interface.
 func (v *Int64) Set(s string) error {
 	err := v.set(s)
 	if err != nil {
@@ -224,7 +224,7 @@ func (v *Int64) Set(s string) error {
 	return err
 }
 
-// Get implements flag.Getter interface.
+// Get implements [flag.Getter] interface.
 func (v *Int64) Get() any {
 	if v.value == nil {
 		return nil
@@ -232,7 +232,7 @@ func (v *Int64) Get() any {
 	return *v.value
 }
 
-// Type implements pflag.Value interface.
+// Type implements [github.com/spf13/pflag.Value] interface.
 func (*Int64) Type() string {
 	return "Int64"
 }
@@ -240,7 +240,7 @@ func (*Int64) Type() string {
 
 var _ Value = &Uint{}
 
-// String implements flag.Value interface.
+// String implements [flag.Value] interface.
 func (v *Uint) String() string {
 	if v == nil || v.value == nil {
 		return ""
@@ -248,7 +248,7 @@ func (v *Uint) String() string {
 	return fmt.Sprint(*v.value) //nolint:gocritic // For genny.
 }
 
-// Set implements flag.Value interface.
+// Set implements [flag.Value] interface.
 func (v *Uint) Set(s string) error {
 	err := v.set(s)
 	if err != nil {
@@ -257,7 +257,7 @@ func (v *Uint) Set(s string) error {
 	return err
 }
 
-// Get implements flag.Getter interface.
+// Get implements [flag.Getter] interface.
 func (v *Uint) Get() any {
 	if v.value == nil {
 		return nil
@@ -265,7 +265,7 @@ func (v *Uint) Get() any {
 	return *v.value
 }
 
-// Type implements pflag.Value interface.
+// Type implements [github.com/spf13/pflag.Value] interface.
 func (*Uint) Type() string {
 	return "Uint"
 }
@@ -273,7 +273,7 @@ func (*Uint) Type() string {
 
 var _ Value = &Uint64{}
 
-// String implements flag.Value interface.
+// String implements [flag.Value] interface.
 func (v *Uint64) String() string {
 	if v == nil || v.value == nil {
 		return ""
@@ -281,7 +281,7 @@ func (v *Uint64) String() string {
 	return fmt.Sprint(*v.value) //nolint:gocritic // For genny.
 }
 
-// Set implements flag.Value interface.
+// Set implements [flag.Value] interface.
 func (v *Uint64) Set(s string) error {
 	err := v.set(s)
 	if err != nil {
@@ -290,7 +290,7 @@ func (v *Uint64) Set(s string) error {
 	return err
 }
 
-// Get implements flag.Getter interface.
+// Get implements [flag.Getter] interface.
 func (v *Uint64) Get() any {
 	if v.value == nil {
 		return nil
@@ -298,7 +298,7 @@ func (v *Uint64) Get() any {
 	return *v.value
 }
 
-// Type implements pflag.Value interface.
+// Type implements [github.com/spf13/pflag.Value] interface.
 func (*Uint64) Type() string {
 	return "Uint64"
 }
@@ -306,7 +306,7 @@ func (*Uint64) Type() string {
 
 var _ Value = &Float64{}
 
-// String implements flag.Value interface.
+// String implements [flag.Value] interface.
 func (v *Float64) String() string {
 	if v == nil || v.value == nil {
 		return ""
@@ -314,7 +314,7 @@ func (v *Float64) String() string {
 	return fmt.Sprint(*v.value) //nolint:gocritic // For genny.
 }
 
-// Set implements flag.Value interface.
+// Set implements [flag.Value] interface.
 func (v *Float64) Set(s string) error {
 	err := v.set(s)
 	if err != nil {
@@ -323,7 +323,7 @@ func (v *Float64) Set(s string) error {
 	return err
 }
 
-// Get implements flag.Getter interface.
+// Get implements [flag.Getter] interface.
 func (v *Float64) Get() any {
 	if v.value == nil {
 		return nil
@@ -331,7 +331,7 @@ func (v *Float64) Get() any {
 	return *v.value
 }
 
-// Type implements pflag.Value interface.
+// Type implements [github.com/spf13/pflag.Value] interface.
 func (*Float64) Type() string {
 	return "Float64"
 }
@@ -339,7 +339,7 @@ func (*Float64) Type() string {
 
 var _ Value = &IntBetween{}
 
-// String implements flag.Value interface.
+// String implements [flag.Value] interface.
 func (v *IntBetween) String() string {
 	if v == nil || v.value == nil {
 		return ""
@@ -347,7 +347,7 @@ func (v *IntBetween) String() string {
 	return fmt.Sprint(*v.value) //nolint:gocritic // For genny.
 }
 
-// Set implements flag.Value interface.
+// Set implements [flag.Value] interface.
 func (v *IntBetween) Set(s string) error {
 	err := v.set(s)
 	if err != nil {
@@ -356,7 +356,7 @@ func (v *IntBetween) Set(s string) error {
 	return err
 }
 
-// Get implements flag.Getter interface.
+// Get implements [flag.Getter] interface.
 func (v *IntBetween) Get() any {
 	if v.value == nil {
 		return nil
@@ -364,7 +364,7 @@ func (v *IntBetween) Get() any {
 	return *v.value
 }
 
-// Type implements pflag.Value interface.
+// Type implements [github.com/spf13/pflag.Value] interface.
 func (*IntBetween) Type() string {
 	return "IntBetween"
 }
@@ -372,7 +372,7 @@ func (*IntBetween) Type() string {
 
 var _ Value = &Port{}
 
-// String implements flag.Value interface.
+// String implements [flag.Value] interface.
 func (v *Port) String() string {
 	if v == nil || v.value == nil {
 		return ""
@@ -380,7 +380,7 @@ func (v *Port) String() string {
 	return fmt.Sprint(*v.value) //nolint:gocritic // For genny.
 }
 
-// Set implements flag.Value interface.
+// Set implements [flag.Value] interface.
 func (v *Port) Set(s string) error {
 	err := v.set(s)
 	if err != nil {
@@ -389,7 +389,7 @@ func (v *Port) Set(s string) error {
 	return err
 }
 
-// Get implements flag.Getter interface.
+// Get implements [flag.Getter] interface.
 func (v *Port) Get() any {
 	if v.value == nil {
 		return nil
@@ -397,7 +397,7 @@ func (v *Port) Get() any {
 	return *v.value
 }
 
-// Type implements pflag.Value interface.
+// Type implements [github.com/spf13/pflag.Value] interface.
 func (*Port) Type() string {
 	return "Port"
 }
@@ -405,7 +405,7 @@ func (*Port) Type() string {
 
 var _ Value = &ListenPort{}
 
-// String implements flag.Value interface.
+// String implements [flag.Value] interface.
 func (v *ListenPort) String() string {
 	if v == nil || v.value == nil {
 		return ""
@@ -413,7 +413,7 @@ func (v *ListenPort) String() string {
 	return fmt.Sprint(*v.value) //nolint:gocritic // For genny.
 }
 
-// Set implements flag.Value interface.
+// Set implements [flag.Value] interface.
 func (v *ListenPort) Set(s string) error {
 	err := v.set(s)
 	if err != nil {
@@ -422,7 +422,7 @@ func (v *ListenPort) Set(s string) error {
 	return err
 }
 
-// Get implements flag.Getter interface.
+// Get implements [flag.Getter] interface.
 func (v *ListenPort) Get() any {
 	if v.value == nil {
 		return nil
@@ -430,7 +430,7 @@ func (v *ListenPort) Get() any {
 	return *v.value
 }
 
-// Type implements pflag.Value interface.
+// Type implements [github.com/spf13/pflag.Value] interface.
 func (*ListenPort) Type() string {
 	return "ListenPort"
 }
@@ -438,7 +438,7 @@ func (*ListenPort) Type() string {
 
 var _ Value = &IPNet{}
 
-// String implements flag.Value interface.
+// String implements [flag.Value] interface.
 func (v *IPNet) String() string {
 	if v == nil || v.value == nil {
 		return ""
@@ -446,7 +446,7 @@ func (v *IPNet) String() string {
 	return fmt.Sprint(*v.value) //nolint:gocritic // For genny.
 }
 
-// Set implements flag.Value interface.
+// Set implements [flag.Value] interface.
 func (v *IPNet) Set(s string) error {
 	err := v.set(s)
 	if err != nil {
@@ -455,7 +455,7 @@ func (v *IPNet) Set(s string) error {
 	return err
 }
 
-// Get implements flag.Getter interface.
+// Get implements [flag.Getter] interface.
 func (v *IPNet) Get() any {
 	if v.value == nil {
 		return nil
@@ -463,7 +463,7 @@ func (v *IPNet) Get() any {
 	return *v.value
 }
 
-// Type implements pflag.Value interface.
+// Type implements [github.com/spf13/pflag.Value] interface.
 func (*IPNet) Type() string {
 	return "IPNet"
 }
@@ -471,7 +471,7 @@ func (*IPNet) Type() string {
 
 var _ Value = &HostPort{}
 
-// String implements flag.Value interface.
+// String implements [flag.Value] interface.
 func (v *HostPort) String() string {
 	if v == nil || v.value == nil {
 		return ""
@@ -479,7 +479,7 @@ func (v *HostPort) String() string {
 	return fmt.Sprint(*v.value) //nolint:gocritic // For genny.
 }
 
-// Set implements flag.Value interface.
+// Set implements [flag.Value] interface.
 func (v *HostPort) Set(s string) error {
 	err := v.set(s)
 	if err != nil {
@@ -488,7 +488,7 @@ func (v *HostPort) Set(s string) error {
 	return err
 }
 
-// Get implements flag.Getter interface.
+// Get implements [flag.Getter] interface.
 func (v *HostPort) Get() any {
 	if v.value == nil {
 		return nil
@@ -496,7 +496,7 @@ func (v *HostPort) Get() any {
 	return *v.value
 }
 
-// Type implements pflag.Value interface.
+// Type implements [github.com/spf13/pflag.Value] interface.
 func (*HostPort) Type() string {
 	return "HostPort"
 }
