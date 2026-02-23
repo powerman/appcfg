@@ -23,7 +23,7 @@
 //
 // First data structure should be able to apply same constraints to some
 // value no matter from which source it comes from. Luckily, we already
-// have suitable interface for this task: flag.Value and the likes. Using
+// have suitable interface for this task: [flag.Value] and the likes. Using
 // compatible interface is a requirement to be able to attach flags to
 // these values, but as same time this interface allows us to accept
 // values as plain strings, which makes it general enough for any sources.
@@ -33,7 +33,7 @@
 // structure, and also some functions to help loading data from different
 // sources (like environment variables) into such Value typed values.
 //
-// Provided Value interface has more strict semantics than flag.Value, to
+// Provided Value interface has more strict semantics than [flag.Value], to
 // be able to distinguish between zero and unset values - as it is
 // important to know is required configuration value was provided or not.
 //

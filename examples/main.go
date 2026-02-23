@@ -1,3 +1,6 @@
+// Example of using appcfg package to gather configuration values
+// from environment variables and command line flags, validate them and
+// convert into convenient for app structure. See appcfg package docs for more details.
 package main
 
 import (

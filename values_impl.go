@@ -9,7 +9,7 @@ import (
 
 var _ Value = &Duration{}
 
-// String implements flag.Value interface.
+// String implements [flag.Value] interface.
 func (v *Duration) String() string {
 	if v == nil || v.value == nil {
 		return ""
@@ -17,7 +17,7 @@ func (v *Duration) String() string {
 	return fmt.Sprint(*v.value) //nolint:gocritic // For genny.
 }
 
-// Set implements flag.Value interface.
+// Set implements [flag.Value] interface.
 func (v *Duration) Set(s string) error {
 	err := v.set(s)
 	if err != nil {
@@ -26,7 +26,7 @@ func (v *Duration) Set(s string) error {
 	return err
 }
 
-// Get implements flag.Getter interface.
+// Get implements [flag.Getter] interface.
 func (v *Duration) Get() any {
 	if v.value == nil {
 		return nil
@@ -34,7 +34,7 @@ func (v *Duration) Get() any {
 	return *v.value
 }
 
-// Type implements pflag.Value interface.
+// Type implements [github.com/spf13/pflag.Value] interface.
 func (*Duration) Type() string {
 	return "Duration"
 }

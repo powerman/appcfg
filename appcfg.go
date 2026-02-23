@@ -104,7 +104,7 @@ func doWrapErr(reqErr *RequiredError, flagName string, cfgs ...any) error {
 func forStruct(cfg any, handle func(Value, string, Tags)) {
 	val := reflect.ValueOf(cfg)
 	typ := val.Type()
-	if typ.Kind() != reflect.Ptr || typ.Elem().Kind() != reflect.Struct {
+	if typ.Kind() != reflect.Pointer || typ.Elem().Kind() != reflect.Struct {
 		panic("cfg: must be a ptr to struct")
 	}
 	typ = typ.Elem()

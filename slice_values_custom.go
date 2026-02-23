@@ -25,7 +25,7 @@ func (v *BoolSlice) Value(err *error) (val []bool) { //nolint:gocritic // ptrToR
 	return v.values
 }
 
-// IsBoolFlag implements extended flag.Value interface.
+// IsBoolFlag implements extended [flag.Value] interface.
 func (*BoolSlice) IsBoolFlag() bool {
 	return true
 }

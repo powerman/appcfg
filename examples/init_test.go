@@ -1,4 +1,3 @@
-// Package main provides test utilities for the main example.
 package main
 
 import (

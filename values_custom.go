@@ -25,7 +25,7 @@ func (v *Bool) Value(err *error) (val bool) { //nolint:gocritic // ptrToRefParam
 	return *v.value
 }
 
-// IsBoolFlag implements extended flag.Value interface.
+// IsBoolFlag implements extended [flag.Value] interface.
 func (*Bool) IsBoolFlag() bool {
 	return true
 }

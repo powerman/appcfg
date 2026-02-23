@@ -5,12 +5,13 @@ import (
 	"math"
 	"net"
 	"net/url"
+	"slices"
 	"strconv"
 	"strings"
 	"time"
 )
 
-// Duration can be set only to string valid for time.ParseDuration().
+// Duration can be set only to string valid for [time.ParseDuration].
 type Duration struct {
 	value *time.Duration
 }
@@ -70,11 +71,9 @@ type OneOfString struct {
 }
 
 func (v *OneOfString) set(s string) error {
-	for _, item := range v.oneOf {
-		if s == item {
-			v.value = &s
-			return nil
-		}
+	if slices.Contains(v.oneOf, s) {
+		v.value = &s
+		return nil
 	}
 	return fmt.Errorf("%w %q", errNotOneOf, v.oneOf)
 }

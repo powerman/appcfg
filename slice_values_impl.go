@@ -9,7 +9,7 @@ import (
 
 var _ Value = &DurationSlice{}
 
-// String implements flag.Value interface.
+// String implements [flag.Value] interface.
 func (v *DurationSlice) String() string {
 	if v == nil || v.values == nil {
 		return ""
@@ -17,7 +17,7 @@ func (v *DurationSlice) String() string {
 	return fmt.Sprint(v.values)
 }
 
-// Set implements flag.Value interface.
+// Set implements [flag.Value] interface.
 func (v *DurationSlice) Set(s string) error {
 	if v.completed {
 		v.completed = false
@@ -30,7 +30,7 @@ func (v *DurationSlice) Set(s string) error {
 	return err
 }
 
-// Get implements flag.Getter interface.
+// Get implements [flag.Getter] interface.
 func (v *DurationSlice) Get() any {
 	if v.values == nil {
 		return nil
@@ -39,7 +39,7 @@ func (v *DurationSlice) Get() any {
 	return v.values
 }
 
-// Type implements pflag.Value interface.
+// Type implements [github.com/spf13/pflag.Value] interface.
 func (*DurationSlice) Type() string {
 	return "DurationSlice"
 }

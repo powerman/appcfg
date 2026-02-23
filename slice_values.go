@@ -10,7 +10,7 @@ import (
 	"time"
 )
 
-// DurationSlice can be set to comma-separated strings valid for time.ParseDuration().
+// DurationSlice can be set to comma-separated strings valid for [time.ParseDuration].
 type DurationSlice struct {
 	values    []time.Duration
 	completed bool
@@ -21,7 +21,7 @@ func (v *DurationSlice) set(ss string) error {
 		v.values = []time.Duration{}
 		return nil
 	}
-	for _, s := range strings.Split(ss, ",") {
+	for s := range strings.SplitSeq(ss, ",") {
 		d, err := time.ParseDuration(s)
 		if err != nil {
 			return err
@@ -43,7 +43,7 @@ func (v *BoolSlice) set(ss string) error {
 		v.values = []bool{}
 		return nil
 	}
-	for _, s := range strings.Split(ss, ",") {
+	for s := range strings.SplitSeq(ss, ",") {
 		b, err := strconv.ParseBool(s)
 		if err != nil {
 			return err
@@ -106,7 +106,7 @@ func (v *NotEmptyStringSlice) set(ss string) error {
 		v.values = []string{}
 		return nil
 	}
-	for _, s := range strings.Split(ss, ",") {
+	for s := range strings.SplitSeq(ss, ",") {
 		if strings.TrimSpace(s) == "" {
 			return errEmptyOrWhite
 		}
@@ -129,7 +129,7 @@ func (v *OneOfStringSlice) set(ss string) error {
 		return nil
 	}
 SET:
-	for _, s := range strings.Split(ss, ",") {
+	for s := range strings.SplitSeq(ss, ",") {
 		for _, item := range v.oneOf {
 			if s == item {
 				v.values = append(v.values, s)
@@ -176,7 +176,7 @@ func (v *IntSlice) set(ss string) error {
 		v.values = []int{}
 		return nil
 	}
-	for _, s := range strings.Split(ss, ",") {
+	for s := range strings.SplitSeq(ss, ",") {
 		i64, err := strconv.ParseInt(s, 0, strconv.IntSize)
 		if err != nil {
 			return err
@@ -202,7 +202,7 @@ func (v *Int64Slice) set(ss string) error {
 		v.values = []int64{}
 		return nil
 	}
-	for _, s := range strings.Split(ss, ",") {
+	for s := range strings.SplitSeq(ss, ",") {
 		i, err := strconv.ParseInt(s, 0, parseBits)
 		if err != nil {
 			return err
@@ -224,7 +224,7 @@ func (v *UintSlice) set(ss string) error {
 		v.values = []uint{}
 		return nil
 	}
-	for _, s := range strings.Split(ss, ",") {
+	for s := range strings.SplitSeq(ss, ",") {
 		i64, err := strconv.ParseUint(s, 0, strconv.IntSize)
 		if err != nil {
 			return err
@@ -250,7 +250,7 @@ func (v *Uint64Slice) set(ss string) error {
 		v.values = []uint64{}
 		return nil
 	}
-	for _, s := range strings.Split(ss, ",") {
+	for s := range strings.SplitSeq(ss, ",") {
 		i, err := strconv.ParseUint(s, 0, parseBits)
 		if err != nil {
 			return err
@@ -271,7 +271,7 @@ func (v *Float64Slice) set(ss string) error {
 		v.values = []float64{}
 		return nil
 	}
-	for _, s := range strings.Split(ss, ",") {
+	for s := range strings.SplitSeq(ss, ",") {
 		i, err := strconv.ParseFloat(s, parseBits)
 		if err != nil {
 			return err
@@ -294,7 +294,7 @@ func (v *IntBetweenSlice) set(ss string) error {
 		v.values = []int{}
 		return nil
 	}
-	for _, s := range strings.Split(ss, ",") {
+	for s := range strings.SplitSeq(ss, ",") {
 		i, err := strconv.Atoi(s)
 		if err != nil {
 			return err
@@ -317,7 +317,7 @@ func (v *PortSlice) set(ss string) error {
 		v.values = []int{}
 		return nil
 	}
-	for _, s := range strings.Split(ss, ",") {
+	for s := range strings.SplitSeq(ss, ",") {
 		i, err := strconv.Atoi(s)
 		if err != nil {
 			return err
@@ -340,7 +340,7 @@ func (v *ListenPortSlice) set(ss string) error {
 		v.values = []int{}
 		return nil
 	}
-	for _, s := range strings.Split(ss, ",") {
+	for s := range strings.SplitSeq(ss, ",") {
 		i, err := strconv.Atoi(s)
 		if err != nil {
 			return err
@@ -363,7 +363,7 @@ func (v *IPNetSlice) set(ss string) error {
 		v.values = []*net.IPNet{}
 		return nil
 	}
-	for _, s := range strings.Split(ss, ",") {
+	for s := range strings.SplitSeq(ss, ",") {
 		_, ipNet, err := net.ParseCIDR(s)
 		if err != nil {
 			return err
@@ -389,7 +389,7 @@ func (v *HostPortSlice) set(ss string) error {
 	if v.values == nil {
 		v.tuples = nil
 	}
-	for _, s := range strings.Split(ss, ",") {
+	for s := range strings.SplitSeq(ss, ",") {
 		var tuple HostPortTuple
 		host, port, err := net.SplitHostPort(s)
 		if err != nil {

@@ -19,8 +19,8 @@ const parseBits = 64
 // string with validation. It's suitable for receiving configuration from
 // hardcoded defaults, environment variables, command line flags, etc.
 //
-// Implements common interfaces for flags (flag.Value, flag.Getter,
-// github.com/spf13/pflag.Value and github.com/urfave/cli.Generic), but
+// Implements common interfaces for flags ([flag.Value], [flag.Getter],
+// [github.com/spf13/pflag.Value] and [github.com/urfave/cli.Generic]), but
 // require more strict semantics to distinguish between zero and unset
 // values (Set resets value to unset on error, Get return nil on unset).
 //
@@ -38,7 +38,7 @@ type Value interface {
 }
 
 //nolint:gochecknoglobals // By design.
-var typValue = reflect.TypeOf(new(Value)).Elem()
+var typValue = reflect.TypeFor[Value]()
 
 func implementsValue(typ reflect.Type) bool {
 	return typ.Implements(typValue) || reflect.PointerTo(typ).Implements(typValue)
