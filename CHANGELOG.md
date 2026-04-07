@@ -5,6 +5,21 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.9.2] - 2026-04-07
+
+### 📦️ Dependencies
+
+- **(deps)** Bump github.com/spf13/pflag from 1.0.7 to 1.0.9 by @dependabot[bot] in [#79]
+- **(deps)** Bump github.com/spf13/pflag from 1.0.9 to 1.0.10 by @powerman in [d39d0f1]
+- **(deps)** Bump google.golang.org/grpc from 1.79.1 to 1.79.3 by @dependabot[bot] in [#87]
+- **(deps)** Upgrade by @powerman in [1d269ae]
+
+[0.9.2]: https://github.com/powerman/appcfg/compare/v0.9.1..v0.9.2
+[#79]: https://github.com/powerman/appcfg/pull/79
+[d39d0f1]: https://github.com/powerman/appcfg/commit/d39d0f1a1f6eb69f4a4ae534f3ea4945fc40aefc
+[#87]: https://github.com/powerman/appcfg/pull/87
+[1d269ae]: https://github.com/powerman/appcfg/commit/1d269ae50c54c62940b6a034414ae1ae966887d6
+
 ## [0.9.1] - 2025-08-25
 
 [0.9.1]: https://github.com/powerman/appcfg/compare/v0.9.0..v0.9.1
