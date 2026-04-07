@@ -5,6 +5,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.9.3] - 2026-04-07
+
+### 📦️ Dependencies
+
+- **(deps)** Upgrade by @powerman in [82c4124]
+
+[0.9.3]: https://github.com/powerman/appcfg/compare/v0.9.2..v0.9.3
+[82c4124]: https://github.com/powerman/appcfg/commit/82c4124a1067be560990617e85a6de49343458f7
+
 ## [0.9.2] - 2026-04-07
 
 ### 📦️ Dependencies
