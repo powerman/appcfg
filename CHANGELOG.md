@@ -5,6 +5,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.10.0] - 2026-07-12
+
+### 📦️ Dependencies
+
+- **(deps)** Upgrade by @powerman in [82c4124]
+- **(deps)** Upgrade check to v1.13.0, drop goconvey by @powerman in [d998e52]
+
+[0.10.0]: https://github.com/powerman/appcfg/compare/v0.9.2..v0.10.0
+[82c4124]: https://github.com/powerman/appcfg/commit/82c4124a1067be560990617e85a6de49343458f7
+[d998e52]: https://github.com/powerman/appcfg/commit/d998e52616be9aaeb26bd387a4d090e75917963a
+
 ## [0.9.2] - 2026-04-07
 
 ### 📦️ Dependencies
