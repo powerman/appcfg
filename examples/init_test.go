@@ -27,14 +27,14 @@ func testGetCfg(flags ...string) (any, error) {
 	return getCfg()
 }
 
-func errMatch(t *check.C, flags string, match string) {
+func errMatch(t *check.TB, flags string, match string) {
 	t.Helper()
 	cfg, err := testGetCfg(strings.Fields(flags)...)
 	t.Match(err, match)
 	t.Nil(cfg)
 }
 
-func errMatchEnv(t *check.C, name, val, match string) {
+func errMatchEnv(t *check.TB, name, val, match string) {
 	t.Helper()
 	old, ok := os.LookupEnv(name)
 	if ok {

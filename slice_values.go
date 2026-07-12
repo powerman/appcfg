@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"math"
 	"net"
-	"net/url"
+	urlpkg "net/url"
 	"strconv"
 	"strings"
 	"time"
@@ -154,7 +154,7 @@ func (v *EndpointSlice) set(s string) error {
 		return nil
 	}
 	s = strings.TrimRight(s, "/")
-	p, err := url.Parse(s)
+	p, err := urlpkg.Parse(s)
 	if err != nil {
 		return err
 	} else if p.Host == "" {

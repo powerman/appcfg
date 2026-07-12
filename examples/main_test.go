@@ -8,8 +8,8 @@ import (
 	"github.com/powerman/check"
 )
 
-func Test(tt *testing.T) {
-	t := check.T(tt)
+//nolint:paralleltest // t.Setenv is incompatible with t.Parallel.
+func Test(t *testing.T) {
 	os.Clearenv()
 	want := &config{
 		Host:      "example.com",
@@ -20,13 +20,13 @@ func Test(tt *testing.T) {
 	}
 
 	t.Run("required", func(tt *testing.T) {
-		t := check.T(tt)
+		t := check.Must(tt)
 		errMatch(t, "", `^Retries .* required`)
 		t.Setenv("EXAMPLE_RETRIES", "  1  ")
 		errMatch(t, "", `^Host .* required`)
 	})
 	t.Run("default", func(tt *testing.T) {
-		t := check.T(tt)
+		t := check.Must(tt)
 		t.Setenv("EXAMPLE_RETRIES", "  1  ")
 		t.Setenv("EXAMPLE_HOST", " example.com")
 		cfg, err := testGetCfg()
@@ -34,7 +34,7 @@ func Test(tt *testing.T) {
 		t.DeepEqual(cfg, want)
 	})
 	t.Run("constraint", func(tt *testing.T) {
-		t := check.T(tt)
+		t := check.Must(tt)
 		t.Setenv("EXAMPLE_RETRIES", "  1  ")
 		t.Setenv("EXAMPLE_HOST", " example.com")
 		errMatchEnv(t, "EXAMPLE_HOST", "", `^Host .* empty`)
@@ -46,7 +46,7 @@ func Test(tt *testing.T) {
 		errMatch(t, "-timeout=x", `^Timeout .* required`)
 	})
 	t.Run("env", func(tt *testing.T) {
-		t := check.T(tt)
+		t := check.Must(tt)
 		t.Setenv("EXAMPLE_HOST", "example2.com")
 		t.Setenv("EXAMPLE_PORT", "2443")
 		t.Setenv("EXAMPLE_BIND_PORTS", "2080,2443")
@@ -60,7 +60,7 @@ func Test(tt *testing.T) {
 		t.DeepEqual(cfg, want)
 	})
 	t.Run("flag", func(tt *testing.T) {
-		t := check.T(tt)
+		t := check.Must(tt)
 		t.Setenv("EXAMPLE_HOST", "example2.com")
 		t.Setenv("EXAMPLE_PORT", "2443")
 		t.Setenv("EXAMPLE_BIND_PORTS", "2080,2443")

@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"math"
 	"net"
-	"net/url"
+	urlpkg "net/url"
 	"slices"
 	"strconv"
 	"strings"
@@ -86,7 +86,7 @@ type Endpoint struct {
 
 func (v *Endpoint) set(s string) error {
 	s = strings.TrimRight(s, "/")
-	p, err := url.Parse(s)
+	p, err := urlpkg.Parse(s)
 	if err != nil {
 		return err
 	} else if p.Host == "" {

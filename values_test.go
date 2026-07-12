@@ -9,8 +9,8 @@ import (
 )
 
 func TestBool(tt *testing.T) {
-	t := check.T(tt)
-	t.Parallel()
+	tt.Parallel()
+	t := check.Must(tt)
 
 	var v appcfg.Bool
 	t.Equal(v.Type(), "Bool")
@@ -41,8 +41,8 @@ func TestBool(tt *testing.T) {
 }
 
 func TestInt(tt *testing.T) {
-	t := check.T(tt)
-	t.Parallel()
+	tt.Parallel()
+	t := check.Must(tt)
 
 	var v appcfg.Int
 	t.Equal(v.Type(), "Int")
@@ -73,8 +73,8 @@ func TestInt(tt *testing.T) {
 }
 
 func TestUint(tt *testing.T) {
-	t := check.T(tt)
-	t.Parallel()
+	tt.Parallel()
+	t := check.Must(tt)
 
 	var v appcfg.Uint
 	t.Equal(v.Type(), "Uint")
@@ -106,8 +106,8 @@ func TestUint(tt *testing.T) {
 }
 
 func TestIPNet(tt *testing.T) {
-	t := check.T(tt)
-	t.Parallel()
+	tt.Parallel()
+	t := check.Must(tt)
 
 	var v appcfg.IPNet
 	t.Equal(v.Type(), "IPNet")
@@ -138,8 +138,8 @@ func TestIPNet(tt *testing.T) {
 }
 
 func TestHostPort(tt *testing.T) {
-	t := check.T(tt)
-	t.Parallel()
+	tt.Parallel()
+	t := check.Must(tt)
 
 	var v appcfg.HostPort
 	t.Equal(v.Type(), "HostPort")
