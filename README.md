@@ -4,7 +4,6 @@
 [![Go version](https://img.shields.io/github/go-mod/go-version/powerman/appcfg?color=blue)](https://go.dev/)
 [![Test](https://img.shields.io/github/actions/workflow/status/powerman/appcfg/test.yml?label=test)](https://github.com/powerman/appcfg/actions/workflows/test.yml)
 [![Coverage Status](https://raw.githubusercontent.com/powerman/appcfg/gh-badges/coverage.svg)](https://github.com/powerman/appcfg/actions/workflows/test.yml)
-[![Go Report Card](https://goreportcard.com/badge/github.com/powerman/appcfg)](https://goreportcard.com/report/github.com/powerman/appcfg)
 [![Release](https://img.shields.io/github/v/release/powerman/appcfg?color=blue)](https://github.com/powerman/appcfg/releases/latest)
 [![Go Reference](https://pkg.go.dev/badge/github.com/powerman/appcfg.svg)](https://pkg.go.dev/github.com/powerman/appcfg)
 
