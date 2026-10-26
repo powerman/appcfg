@@ -109,8 +109,7 @@ func forStruct(cfg any, handle func(Value, string, Tags)) {
 	}
 	typ = typ.Elem()
 
-	for i := range typ.NumField() {
-		f := typ.Field(i)
+	for f := range typ.Fields() {
 		if f.PkgPath != "" {
 			continue
 		}
